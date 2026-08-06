@@ -1,0 +1,20 @@
+# Environment & secrets (never commit)
+.env
+*.env
+!.env.example
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
