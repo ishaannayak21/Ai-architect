@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -10,6 +9,7 @@ import {
   FolderTree,
   ListChecks,
   Route,
+  Share2,
   ShieldCheck,
   Sparkles,
   Target,
@@ -19,13 +19,12 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { ArchitectChatWindow } from "@/components/chat/ArchitectChatWindow";
 import { DiagramsSection } from "@/components/diagrams/DiagramsSection";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { ROUTES } from "@/constants";
@@ -49,33 +48,29 @@ function SectionCard({
   accent?: "brand" | "emerald" | "violet" | "amber";
 }) {
   const accentClasses: Record<string, string> = {
-    brand: "border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]",
-    emerald:
-      "border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]",
-    violet:
-      "border-[#E6DFD5] bg-[#FAF7F2] text-[#1F2421] dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7]",
-    amber: "border-[#F3D9C8] bg-[#FDF3EE] text-[#C05621] dark:border-[#522916] dark:bg-[#331C13] dark:text-[#E07A48]",
+    brand: "border-orange-500/30 bg-orange-500/10 text-orange-500",
+    emerald: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+    violet: "border-purple-500/30 bg-purple-500/10 text-purple-400",
+    amber: "border-amber-500/30 bg-amber-500/10 text-amber-500",
   };
 
   return (
-    <Card className="p-6 sm:p-7">
-      <h3 className="flex items-center gap-3 font-serif text-xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
-        <span
-          className={`flex size-9 items-center justify-center rounded-xl border ${accentClasses[accent]}`}
-        >
-          <Icon className="size-4.5" />
+    <div className="rounded-2xl border border-stone-200 bg-white p-6 dark:border-stone-800/80 dark:bg-[#111111] sm:p-7 shadow-xs">
+      <h3 className="flex items-center gap-3 font-serif text-xl font-bold tracking-tight text-stone-900 dark:text-white">
+        <span className={`flex size-10 items-center justify-center rounded-xl border ${accentClasses[accent]}`}>
+          <Icon className="size-5" />
         </span>
         {title}
       </h3>
-      <div className="mt-4">{children}</div>
-    </Card>
+      <div className="mt-5">{children}</div>
+    </div>
   );
 }
 
 function StringList({ items }: { items?: string[] }) {
   if (!items || items.length === 0) {
     return (
-      <p className="font-mono text-xs text-[#6B726C]">
+      <p className="font-mono text-xs text-stone-500 dark:text-stone-400">
         No items specified in blueprint.
       </p>
     );
@@ -83,8 +78,8 @@ function StringList({ items }: { items?: string[] }) {
   return (
     <ul className="space-y-3">
       {items.map((item, index) => (
-        <li key={index} className="flex items-start gap-3 text-sm text-[#4A524C] dark:text-[#A3B5A7] leading-relaxed font-sans">
-          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#C05621]" />
+        <li key={index} className="flex items-start gap-3 text-sm text-stone-700 dark:text-stone-300 leading-relaxed font-sans">
+          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-orange-500" />
           <span>{item}</span>
         </li>
       ))}
@@ -95,7 +90,7 @@ function StringList({ items }: { items?: string[] }) {
 function TableList({ tables }: { tables?: BlueprintDatabaseTable[] }) {
   if (!tables || tables.length === 0) {
     return (
-      <p className="font-mono text-xs text-[#6B726C]">
+      <p className="font-mono text-xs text-stone-500 dark:text-stone-400">
         No database tables provided.
       </p>
     );
@@ -105,12 +100,12 @@ function TableList({ tables }: { tables?: BlueprintDatabaseTable[] }) {
       {tables.map((table, index) => (
         <div
           key={`${table.name}-${index}`}
-          className="rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4 dark:border-[#2B3D2F] dark:bg-[#1A241C]"
+          className="rounded-xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800/80 dark:bg-[#161616]"
         >
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="font-mono text-sm font-bold text-[#1F2421] dark:text-[#E6ECE7]">{table.name}</p>
+            <p className="font-mono text-sm font-bold text-stone-900 dark:text-white">{table.name}</p>
             {table.purpose ? (
-              <p className="truncate text-xs font-mono text-[#6B726C] dark:text-[#A3B5A7]">
+              <p className="truncate text-xs font-mono text-stone-500 dark:text-stone-400">
                 {table.purpose}
               </p>
             ) : null}
@@ -120,7 +115,7 @@ function TableList({ tables }: { tables?: BlueprintDatabaseTable[] }) {
               {table.columns.map((column, colIndex) => (
                 <span
                   key={`${column}-${colIndex}`}
-                  className="rounded-md border border-[#E6DFD5] bg-white px-2.5 py-1 font-mono text-[11px] text-[#1F2421] shadow-2xs dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7]"
+                  className="rounded-md border border-stone-200 bg-white px-2.5 py-1 font-mono text-[11px] text-stone-800 shadow-2xs dark:border-stone-800 dark:bg-[#1e1e1e] dark:text-stone-200"
                 >
                   {column}
                 </span>
@@ -140,7 +135,7 @@ function EndpointList({
 }) {
   if (!endpoints || endpoints.length === 0) {
     return (
-      <p className="font-mono text-xs text-[#6B726C]">
+      <p className="font-mono text-xs text-stone-500 dark:text-stone-400">
         No API endpoints provided.
       </p>
     );
@@ -150,30 +145,30 @@ function EndpointList({
       {endpoints.map((endpoint, index) => (
         <div
           key={`${endpoint.method}-${endpoint.path}-${index}`}
-          className="flex items-start gap-3 rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4 dark:border-[#2B3D2F] dark:bg-[#1A241C]"
+          className="flex items-start gap-3 rounded-xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800/80 dark:bg-[#161616]"
         >
           <span
             className={`mt-0.5 shrink-0 rounded-md px-2.5 py-1 font-mono text-[11px] font-bold text-white uppercase ${
               endpoint.method.toUpperCase() === "GET"
-                ? "bg-[#223829]"
+                ? "bg-emerald-600"
                 : endpoint.method.toUpperCase() === "POST"
-                  ? "bg-[#C05621]"
+                  ? "bg-orange-600"
                   : endpoint.method.toUpperCase() === "PATCH" ||
                       endpoint.method.toUpperCase() === "PUT"
-                    ? "bg-[#A8481A]"
+                    ? "bg-amber-600"
                     : endpoint.method.toUpperCase() === "DELETE"
-                      ? "bg-[#C05621]"
-                      : "bg-[#4A524C]"
+                      ? "bg-red-600"
+                      : "bg-stone-700"
             }`}
           >
             {endpoint.method.toUpperCase()}
           </span>
           <div className="min-w-0">
-            <p className="break-all font-mono text-sm font-semibold text-[#1F2421] dark:text-[#E6ECE7]">
+            <p className="break-all font-mono text-sm font-semibold text-stone-900 dark:text-white">
               {endpoint.path}
             </p>
             {endpoint.description ? (
-              <p className="mt-1 text-xs text-[#6B726C] dark:text-[#A3B5A7]">
+              <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
                 {endpoint.description}
               </p>
             ) : null}
@@ -187,14 +182,14 @@ function EndpointList({
 function FolderStructure({ structure }: { structure?: string | string[] }) {
   if (!structure) {
     return (
-      <p className="font-mono text-xs text-[#6B726C]">
+      <p className="font-mono text-xs text-stone-500 dark:text-stone-400">
         No folder structure provided.
       </p>
     );
   }
   const lines = Array.isArray(structure) ? structure.join("\n") : structure;
   return (
-    <pre className="overflow-x-auto rounded-xl border border-[#2B3D2F] bg-[#141C16] p-5 font-mono text-xs leading-relaxed text-[#A3B5A7] dark:border-[#2B3D2F]">
+    <pre className="overflow-x-auto rounded-xl border border-stone-200 bg-stone-950 p-5 font-mono text-xs leading-relaxed text-stone-300 dark:border-stone-800">
       {lines}
     </pre>
   );
@@ -280,7 +275,7 @@ export function BlueprintViewPage() {
   if (isError || !blueprint) {
     return (
       <EmptyState
-        icon={<BookOpen className="size-6" />}
+        icon={<BookOpen className="size-6 text-orange-500" />}
         title="Blueprint not found"
         description="This blueprint may have been removed, or you don't have access to it."
         action={
@@ -295,45 +290,56 @@ export function BlueprintViewPage() {
   const data = blueprint.data as ArchitectBlueprint;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
+      {/* Top Header Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           to={ROUTES.BLUEPRINTS}
-          className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
+          className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-orange-500 hover:text-orange-400 transition-colors"
         >
           <ArrowLeft className="size-4" />
           Back to History
         </Link>
 
-        {/* Retro Tab Switcher */}
-        <div className="inline-flex rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-1 dark:border-[#2B3D2F] dark:bg-[#1E2B21]">
-          <button
-            type="button"
-            onClick={() => setActiveTab("blueprint")}
-            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-serif text-xs font-bold tracking-wide transition-all ${
-              activeTab === "blueprint"
-                ? "bg-[#C05621] text-white shadow-2xs"
-                : "text-[#6B726C] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:text-white"
-            }`}
-          >
-            <Sparkles className="size-3.5" />
-            Architecture Blueprint
-          </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("chat")}
-            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-serif text-xs font-bold tracking-wide transition-all ${
-              activeTab === "chat"
-                ? "bg-[#C05621] text-white shadow-2xs"
-                : "text-[#6B726C] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:text-white"
-            }`}
-          >
-            <Bot className="size-3.5" />
-            AI Architect Chat
-          </button>
+        {/* Action Area: Tab Switcher & Documentation Button */}
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="inline-flex rounded-xl border border-stone-200 bg-white p-1 dark:border-stone-800 dark:bg-[#111111]">
+            <button
+              type="button"
+              onClick={() => setActiveTab("blueprint")}
+              className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                activeTab === "blueprint"
+                  ? "border border-orange-500/40 bg-orange-500/10 text-orange-500 shadow-2xs"
+                  : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white"
+              }`}
+            >
+              <Share2 className="size-3.5" />
+              Architecture Blueprint
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab("chat")}
+              className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                activeTab === "chat"
+                  ? "border border-orange-500/40 bg-orange-500/10 text-orange-500 shadow-2xs"
+                  : "text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white"
+              }`}
+            >
+              <Bot className="size-3.5" />
+              AI Architect Chat
+            </button>
+          </div>
+
+          <Link to={`/blueprints/${blueprint.id}/documentation`}>
+            <Button className="rounded-xl bg-orange-600 px-5 py-2.5 font-sans font-bold text-sm text-white hover:bg-orange-500 shadow-md">
+              <BookOpen className="size-4" />
+              Documentation Center
+            </Button>
+          </Link>
         </div>
       </div>
 
+      {/* Project Header Info Box */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -341,55 +347,59 @@ export function BlueprintViewPage() {
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[#344A39] bg-[#223829] text-white font-bold shadow-md">
-              <Target className="size-7 text-[#E8F0EA]" />
+            <span className="flex size-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shadow-md">
+              <Target className="size-8" />
             </span>
             <div>
-              <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
+              <h2 className="font-serif text-4xl font-normal tracking-tight text-stone-900 dark:text-white sm:text-5xl">
                 {blueprint.title}
               </h2>
-              <div className="mt-2.5 flex flex-wrap items-center gap-2">
-                <Badge variant="success">
-                  <CalendarDays className="size-3" />
+              <div className="mt-3 flex flex-wrap items-center gap-2 font-mono text-xs">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-[#181818] dark:text-stone-300">
+                  <CalendarDays className="size-3 text-stone-400" />
                   {formatDate(blueprint.created_at)}
-                </Badge>
+                </span>
                 {data.estimated_team_size ? (
-                  <Badge variant="brand">
-                    <Users className="size-3" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-[#181818] dark:text-stone-300">
+                    <Users className="size-3 text-stone-400" />
                     Team: {data.estimated_team_size}
-                  </Badge>
+                  </span>
                 ) : null}
-                <Badge variant="neutral">
-                  <Route className="size-3" />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-stone-200 bg-stone-50 px-3 py-1 text-[11px] font-bold text-stone-700 dark:border-stone-800 dark:bg-[#181818] dark:text-stone-300">
+                  <Route className="size-3 text-stone-400" />
                   {data.rest_api_endpoints?.length ?? 0} Endpoints
-                </Badge>
+                </span>
               </div>
             </div>
           </div>
-
-          <Link to={`/blueprints/${blueprint.id}/documentation`}>
-            <Button size="lg">
-              <BookOpen className="size-4" />
-              Documentation Center
-            </Button>
-          </Link>
         </div>
       </motion.div>
 
+      {/* Main View Area */}
       {activeTab === "chat" && blueprintId ? (
         <ArchitectChatWindow blueprintId={blueprintId} />
       ) : (
         <>
+          {/* Executive Summary Highlighted Green Box matching screenshot */}
           {data.project_summary ? (
-            <Card className="p-6 sm:p-7 border-l-4 border-l-[#C05621]">
-              <p className="font-mono text-xs uppercase tracking-wider text-[#C05621] dark:text-[#E07A48] font-bold mb-2">[ EXECUTIVE SUMMARY ]</p>
-              <p className="text-[#4A524C] dark:text-[#A3B5A7] leading-relaxed text-sm sm:text-base font-sans">{data.project_summary}</p>
-            </Card>
+            <div className="relative rounded-2xl border border-emerald-500/30 bg-[#0a140e] p-7 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+                  [ EXECUTIVE SUMMARY ]
+                </span>
+                <span className="text-orange-500 text-xs">✦</span>
+              </div>
+              <p className="font-sans text-base text-stone-200 leading-relaxed sm:text-lg">
+                {data.project_summary}
+              </p>
+            </div>
           ) : null}
 
+          {/* Interactive Mermaid Diagrams Section */}
           <DiagramsSection blueprintId={blueprint.id} prefix={blueprint.title} />
 
-          <div className="grid gap-4 lg:grid-cols-2">
+          {/* Database Schema & REST Endpoints Grid */}
+          <div className="grid gap-6 lg:grid-cols-2">
             <SectionCard
               icon={Database}
               title="Database Schema Tables"
@@ -407,6 +417,7 @@ export function BlueprintViewPage() {
             </SectionCard>
           </div>
 
+          {/* Additional Blueprint Specification Sections */}
           {SECTIONS.map(({ key, title, icon, accent }) => (
             <SectionCard key={key} icon={icon} title={title} accent={accent}>
               <StringList items={data[key]} />

@@ -33,7 +33,7 @@ const DIAGRAM_META: Array<{
     title: "System Architecture",
     description: "High-level components and how they connect",
     icon: Network,
-    accent: "brand",
+    accent: "emerald",
   },
   {
     type: "database_er",
@@ -114,22 +114,22 @@ export function DiagramsSection({
   };
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-6 pt-2">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="flex flex-wrap items-center justify-between gap-3"
+        className="flex flex-wrap items-center justify-between gap-4 border-t border-stone-200 pt-6 dark:border-stone-800/80"
       >
-        <div className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-violet-500 text-white">
-            <Share2 className="size-5" />
+        <div className="flex items-center gap-3.5">
+          <span className="flex size-11 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-500/10 text-purple-400">
+            <Share2 className="size-5 L" />
           </span>
           <div>
-            <h3 className="text-lg font-bold tracking-tight">
+            <h3 className="font-serif text-2xl font-normal tracking-tight text-stone-900 dark:text-white">
               Architecture Diagrams
             </h3>
-            <p className="text-sm text-ink/50 dark:text-white/50">
+            <p className="font-sans text-sm text-stone-500 dark:text-stone-400">
               Visual Mermaid diagrams generated from this blueprint.
             </p>
           </div>
@@ -139,8 +139,9 @@ export function DiagramsSection({
             variant="outline"
             loading={isGeneratingAll}
             onClick={handleGenerateAll}
+            className="rounded-xl border-stone-200 dark:border-stone-800 font-mono text-xs uppercase tracking-wider"
           >
-            <Sparkles className="size-4" />
+            <Sparkles className="size-3.5 text-orange-500" />
             Regenerate all
           </Button>
         ) : null}
@@ -154,7 +155,7 @@ export function DiagramsSection({
         </div>
       ) : isError ? (
         <EmptyState
-          icon={<Share2 className="size-6" />}
+          icon={<Share2 className="size-6 text-orange-500" />}
           title="Couldn't load the diagrams"
           description="Something went wrong while fetching the diagrams for this blueprint."
           action={
@@ -165,18 +166,18 @@ export function DiagramsSection({
         />
       ) : !hasDiagrams ? (
         <EmptyState
-          icon={<Share2 className="size-6" />}
+          icon={<Share2 className="size-6 text-orange-500" />}
           title="No diagrams generated"
           description="Generate the five standard architecture diagrams for this blueprint: system architecture, database ER, application flowchart, API sequence and deployment."
           action={
-            <Button loading={isGeneratingAll} onClick={handleGenerateAll}>
+            <Button loading={isGeneratingAll} onClick={handleGenerateAll} className="bg-orange-600 text-white rounded-full">
               <Sparkles className="size-4" />
               Generate diagrams
             </Button>
           }
         />
       ) : (
-        <div className="space-y-5">
+        <div className="space-y-6">
           {DIAGRAM_META.map((meta, index) => (
             <DiagramCard
               key={meta.type}

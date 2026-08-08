@@ -11,13 +11,10 @@ import { cn } from "@/utils/cn";
 type Accent = "brand" | "emerald" | "violet" | "amber";
 
 const accentClasses: Record<Accent, string> = {
-  brand: "bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300",
-  emerald:
-    "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300",
-  violet:
-    "bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-300",
-  amber:
-    "bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300",
+  brand: "border border-orange-500/30 bg-orange-500/10 text-orange-500",
+  emerald: "border border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+  violet: "border border-purple-500/30 bg-purple-500/10 text-purple-400",
+  amber: "border border-amber-500/30 bg-amber-500/10 text-amber-500",
 };
 
 interface DiagramCardProps {
