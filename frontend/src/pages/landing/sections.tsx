@@ -5,213 +5,193 @@ import {
   Database,
   FileCode2,
   FolderTree,
-  Layers,
   LineChart,
-  Network,
-  Rocket,
-  Sparkles,
-  Workflow,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ROUTES } from "@/constants";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.5 },
-};
-
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-20 pt-32 sm:pt-40">
-      {/* Retro grid background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[28rem] w-[52rem] -translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl" />
-        <div className="absolute inset-0 bg-grid opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]" />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="mx-auto max-w-3xl px-4 text-center sm:px-6"
-      >
+    <section id="home" className="relative overflow-hidden pb-16 pt-20 sm:pt-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl"
         >
-          <Badge variant="brand" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
-            <Sparkles className="size-3.5" />
-            [ AI SOFTWARE ARCHITECT ENGINE ]
-          </Badge>
+          <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3.5 py-1 font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+            <span>✦</span>
+            <span>NEXT-GEN AI ARCHITECTURE ENGINE</span>
+          </div>
+
+          <h1 className="mt-8 font-sans text-4xl font-black uppercase leading-[1.08] tracking-tight text-stone-900 dark:text-white sm:text-7xl">
+            TURN A SINGLE SENTENCE INTO A{" "}
+            <span className="font-serif italic font-normal text-orange-500 lowercase">
+              complete software blueprint
+            </span>
+          </h1>
+
+          <p className="mt-6 max-w-2xl font-sans text-base text-stone-600 dark:text-stone-400 sm:text-lg leading-relaxed">
+            Describe your application concept — e.g. "Hospital ERP System" or "E-Commerce Platform".
+            Our senior architect engine drafts database schemas, REST contracts, system topology,
+            Mermaid diagrams, and exportable documentation in seconds.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link to={ROUTES.REGISTER}>
+              <Button size="lg" className="rounded-full bg-orange-600 px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-orange-500">
+                START ARCHITECTING FREE
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <Link to={ROUTES.LOGIN}>
+              <Button size="lg" variant="outline" className="rounded-full border-stone-300 dark:border-stone-800 px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider">
+                SIGN IN TO WORKSPACE
+              </Button>
+            </Link>
+          </div>
         </motion.div>
 
-        <h1 className="mt-6 text-balance font-serif text-4xl font-bold leading-[1.15] tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-6xl">
-          Turn a single sentence into a{" "}
-          <span className="text-[#C05621] underline decoration-[#C05621]/30 underline-offset-8 dark:text-[#E07A48]">
-            complete software blueprint
-          </span>
-        </h1>
-
-        <p className="mx-auto mt-6 max-w-xl text-pretty font-sans text-lg text-[#4A524C] dark:text-[#A3B5A7]">
-          Describe your idea — "Build an E-commerce Platform." Our engine drafts
-          requirements, database design, API endpoints, architecture, diagrams,
-          deployment plans and more in seconds.
-        </p>
-
-        <div className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-          <Link to={ROUTES.REGISTER}>
-            <Button size="lg">
-              Start building free
-              <ArrowRight className="size-4.5" />
-            </Button>
-          </Link>
-          <Link to={ROUTES.LOGIN}>
-            <Button size="lg" variant="secondary">
-              Sign in to workspace
-            </Button>
-          </Link>
-        </div>
-
-        <p className="mt-5 font-mono text-xs text-stone-500">
-          Free to start · Instant Blueprint Generation · Security Ready
-        </p>
-      </motion.div>
-
-      {/* Mock output card */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.25, duration: 0.6 }}
-        className="mx-auto mt-16 max-w-2xl px-4 sm:px-6"
-      >
-        <div className="retro-card rounded-2xl p-5 shadow-xl">
-          <div className="flex items-center gap-3 border-b border-stone-200/80 pb-3.5 dark:border-stone-800/80">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-amber-500 text-stone-950 font-bold shadow-2xs">
-              <Rocket className="size-4.5" />
-            </span>
-            <div>
-              <p className="font-display font-bold text-stone-900 dark:text-stone-100">E-commerce Platform</p>
-              <p className="font-mono text-xs text-stone-500">
-                [ ARCHITECTURE SPECIFICATION PREVIEW ]
-              </p>
+        {/* Live Interactive Spec Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.55 }}
+          className="mt-16 overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-xl dark:border-stone-800 dark:bg-[#0c0c0c]"
+        >
+          <div className="flex items-center justify-between border-b border-stone-200 pb-4 dark:border-stone-800">
+            <div className="flex items-center gap-3">
+              <span className="flex size-3 rounded-full bg-orange-500" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-stone-900 dark:text-white">
+                LIVE ENGINE SPECIFICATION OUTPUT
+              </span>
             </div>
-            <div className="ml-auto flex gap-1.5">
-              <span className="size-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-              <span className="size-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
-              <span className="size-2.5 rounded-full bg-amber-500" />
-            </div>
+            <span className="font-mono text-xs text-stone-400">0.42s RUNTIME</span>
           </div>
-          <div className="mt-4 space-y-2.5">
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Database, label: "Database Schema", value: "12 tables · PostgreSQL · Indexes" },
-              { icon: FileCode2, label: "REST API Contracts", value: "28 endpoints · Open API Spec" },
-              { icon: FolderTree, label: "Directory Layout", value: "Clean Layered Architecture" },
-              { icon: LineChart, label: "Cost & Scale Model", value: "~$1.4k / mo estimated scale" },
-            ].map(({ icon: Icon, label, value }, index) => (
-              <motion.div
+              { icon: Database, label: "Database Schema", detail: "12 tables · Relational ERD · Indexes" },
+              { icon: FileCode2, label: "REST Contracts", detail: "28 endpoints · Status Codes · JSON" },
+              { icon: FolderTree, label: "Directory Layout", detail: "Layered Clean Architecture" },
+              { icon: LineChart, label: "Scaling & Cost", detail: "Microservice CDN Topology" },
+            ].map(({ icon: Icon, label, detail }) => (
+              <div
                 key={label}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + index * 0.12 }}
-                className="flex items-center gap-3 rounded-xl border border-stone-200/60 bg-stone-100/60 px-3.5 py-2.5 dark:border-stone-800/60 dark:bg-stone-800/40"
+                className="group rounded-xl border border-stone-200 bg-stone-50 p-4 transition-all hover:border-orange-500/40 dark:border-stone-800/80 dark:bg-[#121212]"
               >
-                <Icon className="size-4 text-amber-600 dark:text-amber-400" />
-                <span className="font-display text-xs font-semibold text-stone-800 dark:text-stone-200">
-                  {label}
-                </span>
-                <span className="ml-auto font-mono text-xs text-stone-500 dark:text-stone-400">
-                  {value}
-                </span>
-              </motion.div>
+                <Icon className="size-5 text-orange-500" />
+                <h4 className="mt-3 font-sans text-sm font-bold text-stone-900 dark:text-white">{label}</h4>
+                <p className="mt-1 font-mono text-xs text-stone-500 dark:text-stone-400">{detail}</p>
+              </div>
             ))}
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
 
-const features = [
+const featuresList = [
   {
-    icon: Sparkles,
-    title: "Requirements",
-    description: "Structured, prioritized functional specifications derived from your prompt.",
+    num: "01",
+    title: "Functional Requirements",
+    description: "Structured, prioritized specifications and actor workflows derived directly from your input prompt.",
+    tech: "REQUIREMENTS ENGINE",
   },
   {
-    icon: Database,
-    title: "Database Design",
-    description: "Normalized SQL/NoSQL schema with tables, relationships and indexes.",
+    num: "02",
+    title: "Database Schema Design",
+    description: "Normalized relational & document schemas complete with field types, foreign keys, and indexes.",
+    tech: "POSTGRESQL · SQLITE",
   },
   {
-    icon: Workflow,
-    title: "API Endpoints",
-    description: "REST & GraphQL endpoint specs with methods, payloads and status codes.",
+    num: "03",
+    title: "REST API Contracts",
+    description: "Production REST endpoint definitions with HTTP methods, route parameters, request payloads, and status codes.",
+    tech: "RESTFUL SPEC",
   },
   {
-    icon: FolderTree,
-    title: "Folder Structure",
-    description: "Production-grade repository layout tailored to your tech stack.",
+    num: "04",
+    title: "Directory & Folder Tree",
+    description: "Production-ready repository layout tailored specifically to your chosen framework and tech stack.",
+    tech: "CLEAN ARCHITECTURE",
   },
   {
-    icon: Network,
-    title: "System Architecture",
-    description: "Component hierarchy, microservice boundaries and data flow.",
+    num: "05",
+    title: "System Topology & Architecture",
+    description: "Component interaction hierarchy, caching layer boundaries, load balancer nodes, and data flow.",
+    tech: "DECOUPLED DESIGN",
   },
   {
-    icon: Layers,
-    title: "Mermaid Diagrams",
-    description: "Auto-generated Mermaid sequence, ERD, and architecture diagrams.",
+    num: "06",
+    title: "Interactive Mermaid Diagrams",
+    description: "Auto-generated System Architecture, ERD, Application Flowchart, API Sequence, and Deployment diagrams.",
+    tech: "MERMAID.JS",
   },
   {
-    icon: LineChart,
-    title: "Cost & Scaling",
-    description: "Infrastructure tier forecasts and cloud cost estimation by scale.",
+    num: "07",
+    title: "14-Section Smart Documentation",
+    description: "Comprehensive executive documentation manual compiled instantly with zero manual authoring.",
+    tech: "PDF · HTML · MARKDOWN",
   },
   {
-    icon: Rocket,
-    title: "Deployment Plan",
-    description: "CI/CD pipelines, containerization, DNS setup and rollout strategy.",
+    num: "08",
+    title: "AI Architect Chat Assistant",
+    description: "Context-aware conversational assistant to modify, security-harden, or scale your architecture dynamically.",
+    tech: "GEMINI AI ENGINE",
   },
 ];
 
 export function Features() {
   return (
-    <section id="features" className="py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div {...fadeUp} className="mx-auto max-w-xl text-center">
-          <Badge variant="brand">FEATURES MATRIX</Badge>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
-            Everything your software idea needs to ship
-          </h2>
-          <p className="mt-3 text-pretty text-stone-600 dark:text-stone-400">
-            Stop hand-writing architectural documents. Generate a complete engineering blueprint in under 60 seconds.
-          </p>
-        </motion.div>
+    <section id="features" className="py-20 border-t border-stone-200 dark:border-stone-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-4 pb-12 border-b border-stone-200 dark:border-stone-800">
+          <div>
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+              (02) - FEATURES MATRIX
+            </span>
+            <h2 className="mt-3 font-sans text-4xl font-extrabold uppercase tracking-tight text-stone-900 dark:text-white sm:text-5xl">
+              ENGINEERING DELIVERABLES{" "}
+              <span className="font-serif italic font-normal text-orange-500 lowercase">
+                generated
+              </span>
+            </h2>
+          </div>
+        </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map(({ icon: Icon, title, description }, index) => (
+        <div className="divide-y divide-stone-200 dark:divide-stone-800">
+          {featuresList.map((feat, idx) => (
             <motion.div
-              key={title}
-              initial={{ opacity: 0, y: 20 }}
+              key={feat.num}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              className="group grid grid-cols-1 gap-4 py-7 md:grid-cols-12 md:items-center px-2 sm:px-4 rounded-xl transition-all hover:bg-stone-100/50 dark:hover:bg-stone-900/40"
             >
-              <div className="retro-card group h-full rounded-2xl p-5 transition-all duration-200 hover:-translate-y-1 hover:border-amber-500/40">
-                <div className="flex size-10 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-700 transition-colors group-hover:bg-amber-500 group-hover:text-stone-950 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-300">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="mt-4 font-display font-bold text-stone-900 dark:text-stone-100">{title}</h3>
-                <p className="mt-1.5 text-sm text-stone-600 dark:text-stone-400">
-                  {description}
+              <div className="md:col-span-1 font-mono text-sm font-semibold text-stone-400 dark:text-stone-500">
+                {feat.num}
+              </div>
+              <div className="md:col-span-4">
+                <h3 className="font-sans text-xl font-bold text-stone-900 transition-colors group-hover:text-orange-500 dark:text-white">
+                  {feat.title}
+                </h3>
+              </div>
+              <div className="md:col-span-5">
+                <p className="font-sans text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+                  {feat.description}
                 </p>
+              </div>
+              <div className="md:col-span-2 text-right">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-orange-500">
+                  {feat.tech}
+                </span>
               </div>
             </motion.div>
           ))}
@@ -222,32 +202,28 @@ export function Features() {
 }
 
 const stats = [
-  { value: "10+", label: "Engineering deliverables per blueprint" },
-  { value: "<60s", label: "Average generation runtime" },
-  { value: "5+", label: "Mermaid diagram types" },
-  { value: "100%", label: "Exportable & production ready" },
+  { value: "14+", label: "Documentation Sections" },
+  { value: "<60s", label: "Average Generation Time" },
+  { value: "5", label: "Mermaid Diagram Views" },
+  { value: "100%", label: "Exportable PDF / HTML / MD" },
 ];
 
 export function Stats() {
   return (
-    <section className="py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div {...fadeUp}>
-          <div className="relative overflow-hidden rounded-3xl border border-stone-800 bg-stone-950 p-8 text-stone-100 shadow-xl sm:p-12">
-            <div className="absolute inset-0 bg-grid opacity-30" />
-            <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-amber-500/15 blur-3xl" />
-            <div className="relative grid grid-cols-2 gap-8 lg:grid-cols-4">
-              {stats.map(({ value, label }) => (
-                <div key={label}>
-                  <p className="font-display text-4xl font-bold tracking-tight text-amber-400 sm:text-5xl">
-                    {value}
-                  </p>
-                  <p className="mt-2 font-mono text-xs uppercase tracking-wider text-stone-400">{label}</p>
-                </div>
-              ))}
+    <section className="py-16 border-t border-stone-200 dark:border-stone-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="border-l-2 border-orange-500 pl-6">
+              <p className="font-mono text-4xl font-extrabold text-stone-900 dark:text-white sm:text-5xl">
+                {value}
+              </p>
+              <p className="mt-2 font-mono text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-stone-400">
+                {label}
+              </p>
             </div>
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -256,53 +232,56 @@ export function Stats() {
 const steps = [
   {
     step: "01",
-    title: "Describe your idea",
-    description:
-      "Write a sentence or paragraph explaining your web or mobile app concept, target users, and main goals.",
+    title: "DESCRIBE CONCEPT",
+    description: "Input a title and optional description detailing your web application or system concept.",
   },
   {
     step: "02",
-    title: "Architect engine designs blueprint",
-    description:
-      "Our AI architect constructs database models, REST contracts, system architecture, and Mermaid diagrams.",
+    title: "AI ENGINE GENERATES",
+    description: "Gemini architecture model designs database schemas, API routes, system topology, and Mermaid code.",
   },
   {
     step: "03",
-    title: "Review, refine & export",
-    description:
-      "Interact with the AI Architect Chat to refine specs, view technical documentation, or export to Markdown.",
+    title: "INSPECT & EXPORT",
+    description: "Review interactive diagrams, converse with AI Chat, and download standalone PDF, HTML, or Markdown.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div {...fadeUp} className="mx-auto max-w-xl text-center">
-          <Badge variant="brand">WORKFLOW</Badge>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
-            From idea to architecture in 3 steps
+    <section id="about" className="py-20 border-t border-stone-200 dark:border-stone-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="pb-12 border-b border-stone-200 dark:border-stone-800">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+            (03) - HOW IT WORKS
+          </span>
+          <h2 className="mt-3 font-sans text-4xl font-extrabold uppercase tracking-tight text-stone-900 dark:text-white sm:text-5xl">
+            FROM PROMPT TO ARCHITECTURE IN{" "}
+            <span className="font-serif italic font-normal text-orange-500 lowercase">
+              three steps
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
           {steps.map(({ step, title, description }, index) => (
             <motion.div
               key={step}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.45, delay: index * 0.12 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="rounded-2xl border border-stone-200 bg-stone-50/50 p-8 dark:border-stone-800 dark:bg-[#0e0e0e]"
             >
-              <div className="retro-card relative h-full rounded-2xl p-6">
-                <span className="font-display text-4xl font-bold text-amber-600 dark:text-amber-400">
-                  {step}
-                </span>
-                <h3 className="mt-4 font-display text-lg font-bold text-stone-900 dark:text-stone-100">{title}</h3>
-                <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
-                  {description}
-                </p>
-              </div>
+              <span className="font-mono text-3xl font-extrabold text-orange-500">
+                {step}
+              </span>
+              <h3 className="mt-6 font-sans text-lg font-bold uppercase tracking-tight text-stone-900 dark:text-white">
+                {title}
+              </h3>
+              <p className="mt-3 font-sans text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
+                {description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -313,24 +292,20 @@ export function HowItWorks() {
 
 const faqs: Array<{ question: string; answer: string }> = [
   {
-    question: "What exactly will the AI Architect generate?",
-    answer:
-      "Requirements, database schema, API contracts, folder structure, system architecture, Mermaid diagrams, deployment plan, development timeline, cost estimation, and technical documentation.",
+    question: "What engineering deliverables are generated?",
+    answer: "Every project blueprint produces a 14-section manual containing Functional Requirements, Non-Functional Requirements, User Roles, Use Cases, Tech Stack, Database Schema Tables, REST API Contracts, Folder Structure, System Architecture Topology, Deployment Strategy, Development Timeline, Future Enhancements, 5 Mermaid Diagrams, and interactive AI Chat context.",
   },
   {
-    question: "Can I refine or customize the generated blueprint?",
-    answer:
-      "Yes! Every blueprint comes with an integrated AI Architect Chat window allowing you to ask questions, request modifications, or clarify architectural decisions.",
+    question: "How do HTML and PDF exports work?",
+    answer: "You can download standalone HTML documentation with client-side Mermaid rendering scripts embedded, or multi-page PDF reports complete with cover pages, section headers, formatted tables, and header/footer page numbering.",
   },
   {
-    question: "Is my data and project idea secure?",
-    answer:
-      "Passwords are salted & hashed with bcrypt and authentication uses signed JWTs. Your projects remain private to your user workspace.",
+    question: "Is AI Chat session history persisted?",
+    answer: "Yes! Every project maintains a persistent chat session in the database so you can return to any project, view past conversation history, or continue refining your architecture.",
   },
   {
-    question: "Can I export the architecture diagrams and docs?",
-    answer:
-      "Yes. Every generated deliverable and Mermaid diagram can be exported or copied as clean Markdown code for Notion, GitHub, or internal documentation.",
+    question: "Does viewing cached documentation trigger AI requests?",
+    answer: "No. Documentation and diagrams are generated and cached directly in SQLite upon project creation. Reopening projects, viewing documentation, or exporting files uses 0 AI quota requests.",
   },
 ];
 
@@ -338,47 +313,41 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-20">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6">
-        <motion.div {...fadeUp} className="text-center">
-          <Badge variant="brand">FAQ</Badge>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
-            Frequently asked questions
+    <section id="faq" className="py-20 border-t border-stone-200 dark:border-stone-800">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <div className="pb-12 text-center">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+            (04) - FREQUENTLY ASKED QUESTIONS
+          </span>
+          <h2 className="mt-3 font-sans text-4xl font-extrabold uppercase tracking-tight text-stone-900 dark:text-white">
+            NEED{" "}
+            <span className="font-serif italic font-normal text-orange-500 lowercase">
+              clarification?
+            </span>
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="mt-10 space-y-3">
+        <div className="divide-y divide-stone-200 dark:divide-stone-800">
           {faqs.map(({ question, answer }, index) => {
             const isOpen = openIndex === index;
             return (
-              <motion.div
-                key={question}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.3, delay: index * 0.06 }}
-                className="retro-card overflow-hidden rounded-2xl"
-              >
+              <div key={question} className="py-6">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-stone-900 dark:text-stone-100"
+                  className="flex w-full cursor-pointer items-center justify-between text-left font-sans text-lg font-bold text-stone-900 dark:text-white"
                 >
                   <span>{question}</span>
                   <ChevronDown
-                    className={`size-4.5 shrink-0 text-stone-400 transition-transform duration-300 dark:text-stone-500 ${isOpen ? "rotate-180" : ""}`}
+                    className={`size-5 text-orange-500 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                <motion.div
-                  initial={false}
-                  animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <p className="px-5 pb-4 text-sm text-stone-600 dark:text-stone-400">
+                {isOpen && (
+                  <p className="mt-4 font-sans text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                     {answer}
                   </p>
-                </motion.div>
-              </motion.div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -389,28 +358,27 @@ export function Faq() {
 
 export function CtaSection() {
   return (
-    <section className="pb-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div {...fadeUp}>
-          <div className="relative overflow-hidden rounded-3xl border border-stone-800 bg-stone-950 p-10 text-center text-stone-100 shadow-xl sm:p-16">
-            <div className="absolute inset-0 bg-grid opacity-30" />
-            <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-amber-500/15 blur-3xl" />
-            <h2 className="relative mx-auto max-w-lg font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Your next software architecture starts with one sentence
-            </h2>
-            <p className="relative mx-auto mt-3 max-w-md text-stone-400">
-              Join today and generate your first blueprint — free.
-            </p>
-            <div className="relative mt-8 flex justify-center">
-              <Link to={ROUTES.REGISTER}>
-                <Button size="lg">
-                  Create your free account
-                  <ArrowRight className="size-4.5" />
-                </Button>
-              </Link>
-            </div>
+    <section id="contact" className="py-20 border-t border-stone-200 dark:border-stone-800">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="rounded-3xl border border-stone-200 bg-stone-900 p-12 text-center text-white dark:border-stone-800 dark:bg-[#0b0b0b]">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-orange-500">
+            READY TO BUILD?
+          </span>
+          <h2 className="mt-4 font-sans text-4xl font-black uppercase tracking-tight sm:text-6xl">
+            START YOUR NEXT{" "}
+            <span className="font-serif italic font-normal text-orange-500 lowercase">
+              architecture design
+            </span>
+          </h2>
+          <div className="mt-8 flex justify-center">
+            <Link to={ROUTES.REGISTER}>
+              <Button size="lg" className="rounded-full bg-orange-600 px-8 py-3.5 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-orange-500">
+                CREATE FREE ACCOUNT
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

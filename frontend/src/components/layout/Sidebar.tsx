@@ -27,7 +27,7 @@ interface SidebarProps {
 
 export function Sidebar({ onNavigate }: SidebarProps) {
   return (
-    <aside className="flex h-full w-68 flex-col border-r border-[#E6DFD5] bg-[#FAF7F2] p-5 backdrop-blur-md dark:border-[#2B3D2F] dark:bg-[#141C16]">
+    <aside className="flex h-full w-68 flex-col border-r border-stone-200 bg-white p-5 backdrop-blur-md dark:border-stone-800 dark:bg-[#090909]">
       <div className="flex h-12 items-center px-1">
         <Logo />
       </div>
@@ -35,22 +35,22 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       <Link
         to={ROUTES.NEW_PROJECT}
         onClick={onNavigate}
-        className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-[#C05621] px-4 py-3 font-sans text-sm font-medium text-white shadow-2xs transition-all hover:bg-[#A8481A] active:bg-[#943F16]"
+        className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-2xs transition-all hover:bg-orange-500 active:bg-orange-700"
       >
         <Plus className="size-4.5" />
         New Architect Design
       </Link>
 
       {/* Pro Architect Card */}
-      <div className="mt-4 flex items-center gap-3 rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] p-3 shadow-2xs dark:border-[#2B3D2F] dark:bg-[#1E2B21]">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#FDF3EE] text-[#C05621] dark:bg-[#331C13] dark:text-[#E07A48]">
+      <div className="mt-4 flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-[#121212]">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
           <Crown className="size-4.5" />
         </span>
         <div className="min-w-0">
-          <p className="font-serif text-sm font-bold text-[#1F2421] dark:text-[#E6ECE7]">
+          <p className="font-sans text-sm font-bold text-stone-900 dark:text-white">
             Pro Architect
           </p>
-          <p className="font-sans text-xs text-[#6B726C] dark:text-[#A3B5A7]">
+          <p className="font-mono text-[11px] text-stone-500 dark:text-stone-400">
             Unlimited Blueprints
           </p>
         </div>
@@ -67,15 +67,15 @@ export function Sidebar({ onNavigate }: SidebarProps) {
               cn(
                 "relative flex items-center gap-3.5 rounded-xl px-3.5 py-2.5 font-sans text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "bg-[#EFEAE2] text-[#1F2421] font-semibold dark:bg-[#243226] dark:text-white"
-                  : "text-[#4A524C] hover:bg-[#F2ECE1] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:bg-[#1E2B21] dark:hover:text-[#E6ECE7]",
+                  ? "bg-stone-100 text-stone-900 font-semibold dark:bg-[#1c1c1c] dark:text-white"
+                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-[#171717] dark:hover:text-white",
               )
             }
           >
             {({ isActive }) => (
               <>
                 {isActive ? (
-                  <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-[#223829] dark:bg-[#A3B5A7]" />
+                  <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-orange-500" />
                 ) : null}
                 <Icon className="size-4.5" />
                 <span>{label}</span>
@@ -85,20 +85,19 @@ export function Sidebar({ onNavigate }: SidebarProps) {
         ))}
       </nav>
 
-      {/* Bottom Forest Green System Status Card with Architectural Line Art */}
-      <div className="relative overflow-hidden rounded-2xl bg-[#283C2D] p-4 text-white shadow-md dark:bg-[#1C2C20]">
+      {/* Bottom System Status Card */}
+      <div className="relative overflow-hidden rounded-2xl bg-stone-900 p-4 text-white shadow-md dark:bg-[#121212] border border-stone-800">
         <div className="relative z-10">
-          <p className="font-mono text-xs font-semibold text-[#E8F0EA] tracking-wide mb-1">
-            [ v2.0 System ]
+          <p className="font-mono text-xs font-bold text-orange-500 tracking-wide mb-1">
+            [ v2.0 SYSTEM ONLINE ]
           </p>
-          <p className="font-sans text-xs leading-relaxed text-[#A3B5A7]">
-            Modern-Retro Blueprint Engine &amp; AI Architect ready.
+          <p className="font-sans text-xs leading-relaxed text-stone-400">
+            AI Blueprint &amp; Architecture Engine active.
           </p>
         </div>
-        {/* Subtle Architectural Wireframe Line Art Graphic */}
         <svg
           aria-hidden="true"
-          className="absolute -right-2 -bottom-2 size-24 text-[#3E5C46] opacity-35 pointer-events-none"
+          className="absolute -right-2 -bottom-2 size-24 text-orange-500/20 pointer-events-none"
           fill="none"
           viewBox="0 0 100 100"
           stroke="currentColor"

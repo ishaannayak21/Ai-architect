@@ -15,15 +15,15 @@
 }
 
 .dark {
-  --background: #141C16;
-  --foreground: #E6ECE7;
-  --card: #1E2B21;
-  --card-foreground: #E6ECE7;
-  --muted: #243226;
-  --muted-foreground: #A3B5A7;
-  --border: #2B3D2F;
-  --border-strong: #38503E;
-  --shadow-editorial: 0 2px 16px -2px rgba(0, 0, 0, 0.4);
+  --background: #080808;
+  --foreground: #f4f4f5;
+  --card: #121212;
+  --card-foreground: #f4f4f5;
+  --muted: #1c1c1c;
+  --muted-foreground: #a1a1aa;
+  --border: #242424;
+  --border-strong: #333333;
+  --shadow-editorial: 0 2px 16px -2px rgba(0, 0, 0, 0.6);
 }
 
 @theme {
@@ -36,21 +36,21 @@
   --color-border: var(--border);
 
   --font-serif: "Playfair Display", Georgia, Cambria, serif;
-  --font-display: "Playfair Display", Georgia, Cambria, serif;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
   --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  /* Terracotta / Burnt Orange Accent */
-  --color-terracotta: #C05621;
-  --color-terracotta-hover: #A8481A;
-  --color-terracotta-light: #FDF3EE;
+  /* Orange Accent */
+  --color-terracotta: #ea580c;
+  --color-terracotta-hover: #c2410c;
+  --color-terracotta-light: #fff7ed;
 
-  /* Forest Green Accent */
-  --color-forest: #223829;
-  --color-forest-dark: #192B1F;
-  --color-forest-card: #283C2D;
-  --color-forest-light: #E8F0EA;
-  --color-forest-border: #C5D8C9;
+  /* Muted Dark Accent */
+  --color-forest: #121212;
+  --color-forest-dark: #080808;
+  --color-forest-card: #171717;
+  --color-forest-light: #f4f4f5;
+  --color-forest-border: #262626;
 
   --color-surface: var(--background);
   --color-surface-muted: var(--muted);
@@ -61,6 +61,25 @@
   --animate-float: float 8s ease-in-out infinite;
   --animate-shimmer: shimmer 1.8s linear infinite;
   --animate-pulse-subtle: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 @keyframes gradient-shift {
