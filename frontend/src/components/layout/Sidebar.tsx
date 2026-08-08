@@ -11,6 +11,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
+import { EngineStatusCard } from "@/components/layout/EngineStatusCard";
 import { Logo } from "@/components/ui/Logo";
 import { ROUTES } from "@/constants";
 import { useAuth } from "@/hooks/useAuth";
@@ -113,30 +114,8 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       </nav>
 
       {/* System Status Panel */}
-      <div className="relative overflow-hidden rounded-2xl bg-stone-900 p-4 text-white shadow-md dark:bg-[#121212] border border-stone-800/80 mb-4">
-        <div className="relative z-10">
-          <p className="font-mono text-xs font-bold text-orange-500 tracking-wide mb-1">
-            [ v2.0 SYSTEM ONLINE ]
-          </p>
-          <p className="font-sans text-xs leading-relaxed text-stone-400">
-            AI Blueprint &amp; Architecture Engine active.
-          </p>
-        </div>
-        <svg
-          aria-hidden="true"
-          className="absolute -right-2 -bottom-2 size-24 text-orange-500/20 pointer-events-none"
-          fill="none"
-          viewBox="0 0 100 100"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        >
-          <path d="M10 80 L50 20 L90 80 Z" />
-          <path d="M10 80 L50 60 L90 80" />
-          <path d="M50 20 L50 60" />
-          <path d="M30 50 L70 50" />
-          <path d="M20 65 L80 65" />
-          <line x1="0" y1="90" x2="100" y2="90" />
-        </svg>
+      <div className="mb-4">
+        <EngineStatusCard />
       </div>
 
       {/* User Profile Section at bottom of Sidebar */}
