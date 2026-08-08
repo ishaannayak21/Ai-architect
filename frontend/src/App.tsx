@@ -85,9 +85,12 @@ function PageFallback() {
   );
 }
 
+import { CustomCursor } from "@/components/ui/CustomCursor";
+
 export default function App() {
   return (
     <PageLoader>
+      <CustomCursor />
       <Routes>
         <Route path={ROUTES.HOME} element={<LandingPage />} />
 

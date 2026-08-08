@@ -61,6 +61,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       <Link
         to={ROUTES.NEW_PROJECT}
         onClick={onNavigate}
+        data-cursor-label="Generate Blueprint"
         className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-2xs transition-all hover:bg-orange-500 active:bg-orange-700"
       >
         <Plus className="size-4.5" />

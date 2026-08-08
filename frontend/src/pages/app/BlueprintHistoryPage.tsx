@@ -57,6 +57,7 @@ function BlueprintCard({
     >
       <div
         onClick={() => onOpen(blueprint)}
+        data-cursor-label="View Architecture"
         className="group flex h-full cursor-pointer flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-stone-300 dark:border-stone-800/80 dark:bg-[#111111] dark:hover:border-stone-700 shadow-xs"
       >
         <div>

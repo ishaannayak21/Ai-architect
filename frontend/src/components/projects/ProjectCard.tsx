@@ -28,7 +28,7 @@ export function ProjectCard({ project, onEdit, onDelete }: ProjectCardProps) {
       className="group relative h-full"
     >
       <div className="flex h-full flex-col justify-between rounded-2xl border border-stone-200 bg-white p-6 transition-all duration-200 hover:border-stone-300 dark:border-stone-800/80 dark:bg-[#111111] dark:hover:border-stone-700">
-        <Link to={`/blueprints/${project.id}`} className="block">
+        <Link to={`/blueprints/${project.id}`} data-cursor-label="Open Project" className="block">
           <div className="flex items-start justify-between gap-4">
             <span className="flex size-11 items-center justify-center rounded-xl border border-orange-500/30 bg-orange-500/10 text-orange-500">
               <Layers className="size-5" />
