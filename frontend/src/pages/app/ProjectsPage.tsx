@@ -79,8 +79,10 @@ export function ProjectsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Projects</h2>
-          <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">
+            Projects
+          </h2>
+          <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
             {projects.length} project{projects.length === 1 ? "" : "s"} in your
             workspace
           </p>

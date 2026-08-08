@@ -19,7 +19,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label ? (
           <label
             htmlFor={textareaId}
-            className="text-sm font-medium text-ink/80 dark:text-white/80"
+            className="text-xs font-semibold uppercase tracking-wider text-stone-700 dark:text-stone-300"
           >
             {label}
           </label>
@@ -28,17 +28,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={cn(
-            "w-full resize-none rounded-xl border border-ink/15 bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition-colors duration-200 placeholder:text-ink/35 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:placeholder:text-white/30",
-            error && "border-red-500 focus:border-red-500 focus:ring-red-500/30",
+            "w-full resize-none rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] px-3.5 py-2.5 text-sm text-[#1F2421] shadow-2xs outline-none transition-all duration-200 placeholder:text-[#9A9287] focus:border-[#223829] focus:ring-2 focus:ring-[#223829]/15 dark:border-[#2B3D2F] dark:bg-[#1A241C] dark:text-[#E6ECE7] dark:placeholder:text-[#6B726C] dark:focus:border-[#A3B5A7] dark:focus:ring-[#A3B5A7]/20 font-sans leading-relaxed",
+            error && "border-[#C05621] focus:border-[#C05621] focus:ring-[#C05621]/20 dark:border-[#E07A48]",
             className,
           )}
           aria-invalid={error ? true : undefined}
           {...props}
         />
         {error ? (
-          <p className="text-xs text-red-500">{error}</p>
+          <p className="text-xs font-medium text-rose-600 dark:text-rose-400">{error}</p>
         ) : hint ? (
-          <p className="text-xs text-ink/50 dark:text-white/50">{hint}</p>
+          <p className="text-xs text-stone-500 dark:text-stone-400">{hint}</p>
         ) : null}
       </div>
     );

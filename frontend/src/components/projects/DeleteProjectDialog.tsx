@@ -23,19 +23,19 @@ export function DeleteProjectDialog({
     <Modal
       open={open}
       onClose={onClose}
-      title="Delete project"
+      title="Delete Project"
       description={
         project
           ? `This will permanently delete "${project.title}". This action cannot be undone.`
           : "Delete this project permanently?"
       }
     >
-      <div className="flex items-start gap-3 rounded-xl bg-red-500/10 p-3">
-        <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-red-500 text-white">
+      <div className="flex items-start gap-3 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3.5 text-stone-900 dark:text-stone-100">
+        <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-rose-600 text-white font-bold">
           <Trash2 className="size-4" />
         </span>
-        <p className="text-sm text-ink/70 dark:text-white/70">
-          All associated architecture data will be removed from your account.
+        <p className="text-sm leading-relaxed text-stone-700 dark:text-stone-300">
+          All associated architecture specifications, diagrams, and documentation will be removed.
         </p>
       </div>
       <div className="mt-5 flex justify-end gap-2">
@@ -43,7 +43,7 @@ export function DeleteProjectDialog({
           Cancel
         </Button>
         <Button type="button" variant="danger" loading={submitting} onClick={() => onConfirm().then(onClose)}>
-          {submitting ? "Deleting…" : "Delete project"}
+          {submitting ? "Deleting…" : "Delete Project"}
         </Button>
       </div>
     </Modal>

@@ -95,15 +95,15 @@ export function ProfilePage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">Profile</h2>
-        <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
-          Manage your personal information and account security.
+        <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">Account Profile</h2>
+        <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
+          Manage your personal information and security credentials.
         </p>
       </div>
 
       <Card className="p-6">
         <div className="flex items-center gap-4">
-          <span className="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 text-lg font-bold text-white">
+          <span className="flex size-14 items-center justify-center rounded-2xl border border-[#344A39] bg-[#223829] font-serif text-xl font-bold text-white shadow-md">
             {(user?.name ?? "?")
               .split(/\s+/)
               .map((part) => part[0])
@@ -112,16 +112,16 @@ export function ProfilePage() {
               .toUpperCase()}
           </span>
           <div className="min-w-0">
-            <p className="flex items-center gap-2 font-semibold">
+            <p className="flex items-center gap-2 font-serif text-xl font-bold text-[#1F2421] dark:text-[#E6ECE7]">
               {user?.name}
-              <Badge variant="brand">Active</Badge>
+              <Badge variant="success">Active Account</Badge>
             </p>
-            <p className="mt-0.5 flex items-center gap-1.5 text-sm text-ink/55 dark:text-white/50">
+            <p className="mt-1 flex items-center gap-1.5 font-mono text-xs text-[#6B726C] dark:text-[#A3B5A7]">
               <Mail className="size-3.5" />
               {user?.email}
             </p>
-            <p className="mt-0.5 flex items-center gap-1.5 text-xs text-ink/45 dark:text-white/45">
-              <ShieldCheck className="size-3.5" />
+            <p className="mt-1 flex items-center gap-1.5 font-mono text-[11px] text-[#6B726C] dark:text-[#A3B5A7]">
+              <ShieldCheck className="size-3.5 text-[#223829] dark:text-[#A3B5A7]" />
               Member since {user ? formatDate(user.created_at) : "—"}
             </p>
           </div>
@@ -129,7 +129,7 @@ export function ProfilePage() {
       </Card>
 
       <Card className="p-6">
-        <h3 className="font-semibold">Personal information</h3>
+        <h3 className="font-serif text-xl font-bold text-[#1F2421] dark:text-[#E6ECE7]">Personal Information</h3>
         <form
           onSubmit={profileForm.handleSubmit(saveProfile)}
           className="mt-4 space-y-4"
@@ -142,24 +142,24 @@ export function ProfilePage() {
             {...profileForm.register("name")}
           />
           <Input
-            label="Email"
+            label="Email address"
             type="email"
             leftIcon={<Mail className="size-4" />}
             error={profileForm.formState.errors.email?.message}
             {...profileForm.register("email")}
           />
-          <div className="flex justify-end">
+          <div className="flex justify-end pt-2">
             <Button type="submit" loading={savingProfile}>
-              {savingProfile ? "Saving…" : "Save changes"}
+              {savingProfile ? "Saving…" : "Save Changes"}
             </Button>
           </div>
         </form>
       </Card>
 
       <Card className="p-6">
-        <h3 className="font-semibold">Change password</h3>
-        <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
-          Use at least 8 characters with a letter and a number.
+        <h3 className="font-serif text-xl font-bold text-[#1F2421] dark:text-[#E6ECE7]">Change Password</h3>
+        <p className="mt-1 text-sm text-[#6B726C] dark:text-[#A3B5A7]">
+          Must be at least 8 characters long with letters and numbers.
         </p>
         <form
           onSubmit={passwordForm.handleSubmit(savePassword)}
@@ -184,9 +184,9 @@ export function ProfilePage() {
             error={passwordForm.formState.errors.confirmPassword?.message}
             {...passwordForm.register("confirmPassword")}
           />
-          <div className="flex justify-end">
+          <div className="flex justify-end pt-2">
             <Button type="submit" variant="secondary" loading={savingPassword}>
-              {savingPassword ? "Updating…" : "Update password"}
+              {savingPassword ? "Updating…" : "Update Password"}
             </Button>
           </div>
         </form>

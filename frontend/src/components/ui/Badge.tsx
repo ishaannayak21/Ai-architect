@@ -11,21 +11,23 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  brand: "bg-brand-500/10 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300",
+  brand:
+    "border border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7] font-medium",
   success:
-    "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300",
+    "border border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7] font-medium",
   warning:
-    "bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300",
-  danger: "bg-red-500/10 text-red-600 dark:bg-red-400/10 dark:text-red-300",
+    "border border-[#F3D9C8] bg-[#FDF3EE] text-[#C05621] dark:border-[#522916] dark:bg-[#331C13] dark:text-[#E07A48] font-medium",
+  danger:
+    "border border-[#F3D9C8] bg-[#FDF3EE] text-[#C05621] dark:border-[#522916] dark:bg-[#331C13] dark:text-[#E07A48] font-medium",
   neutral:
-    "bg-ink/[0.06] text-ink/60 dark:bg-white/[0.08] dark:text-white/60",
+    "border border-[#E6DFD5] bg-[#FAF7F2] text-[#6B726C] dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#A3B5A7] font-medium",
 };
 
 export function Badge({ children, variant = "neutral", className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-mono tracking-tight",
         variantStyles[variant],
         className,
       )}

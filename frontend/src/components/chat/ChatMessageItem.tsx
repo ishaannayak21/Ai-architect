@@ -59,7 +59,7 @@ export function ChatMessageItem({
             blocks.push(
               <div
                 key={`mermaid-${index}`}
-                className="my-3 rounded-xl border border-slate-200 bg-white p-3.5 shadow-xs dark:border-slate-700/80 dark:bg-slate-900/90"
+                className="my-3.5 rounded-xl border border-stone-300/80 bg-white p-4 shadow-2xs dark:border-stone-700/80 dark:bg-stone-900"
               >
                 <MermaidDiagram code={codeString} />
               </div>
@@ -68,22 +68,22 @@ export function ChatMessageItem({
             blocks.push(
               <div
                 key={`code-${index}`}
-                className="group relative my-3 overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-sm dark:bg-slate-950"
+                className="group relative my-3.5 overflow-hidden rounded-xl border border-stone-800 bg-stone-950 shadow-sm"
               >
-                <div className="flex items-center justify-between border-b border-slate-800 bg-slate-800/80 px-3.5 py-1.5 font-mono text-[11px] font-semibold text-slate-300">
-                  <span>{codeLanguage || "code"}</span>
+                <div className="flex items-center justify-between border-b border-stone-800 bg-stone-900 px-3.5 py-1.5 font-mono text-[11px] font-semibold text-amber-400">
+                  <span>{codeLanguage || "CODE"}</span>
                   <button
                     type="button"
                     onClick={() => {
                       navigator.clipboard.writeText(codeString);
                       toast.success("Code copied");
                     }}
-                    className="cursor-pointer text-slate-400 transition-colors hover:text-white"
+                    className="cursor-pointer text-stone-400 transition-colors hover:text-white"
                   >
                     Copy
                   </button>
                 </div>
-                <pre className="overflow-x-auto p-3.5 font-mono text-xs leading-relaxed text-slate-100">
+                <pre className="overflow-x-auto p-3.5 font-mono text-xs leading-relaxed text-stone-100">
                   {codeString}
                 </pre>
               </div>
@@ -119,21 +119,21 @@ export function ChatMessageItem({
     >
       {/* Avatar */}
       <span
-        className={`flex size-8 shrink-0 items-center justify-center rounded-xl font-bold text-white shadow-sm ${
+        className={`flex size-8.5 shrink-0 items-center justify-center rounded-xl font-bold text-white shadow-2xs border ${
           isUser
-            ? "bg-gradient-to-br from-brand-500 to-indigo-600"
-            : "bg-gradient-to-br from-violet-500 to-emerald-500"
+            ? "border-[#A8481A]/40 bg-[#C05621] font-mono text-xs"
+            : "border-[#344A39] bg-[#223829] text-[#E8F0EA]"
         }`}
       >
-        {isUser ? <User className="size-4" /> : <Bot className="size-4" />}
+        {isUser ? <User className="size-4" /> : <Bot className="size-4 text-[#E8F0EA]" />}
       </span>
 
       {/* Message Bubble */}
       <div
-        className={`group relative max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed shadow-sm ${
+        className={`group relative max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed ${
           isUser
-            ? "bg-brand-600 text-white dark:bg-brand-600"
-            : "border border-slate-200 bg-slate-100 text-slate-900 dark:border-slate-700/70 dark:bg-slate-800/95 dark:text-slate-100"
+            ? "border border-[#C05621] bg-[#C05621] text-white shadow-2xs"
+            : "border border-[#E6DFD5] bg-[#FFFFFF] text-[#1F2421] shadow-2xs dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7]"
         }`}
       >
         {/* Updated Section Badge if assistant modified a blueprint section */}
@@ -151,8 +151,8 @@ export function ChatMessageItem({
 
         {/* Message Footer Actions */}
         <div
-          className={`mt-2 flex items-center justify-between gap-2 text-[11px] opacity-80 transition-opacity group-hover:opacity-100 ${
-            isUser ? "text-white/80" : "text-slate-500 dark:text-slate-400"
+          className={`mt-2.5 flex items-center justify-between gap-2 font-mono text-[10px] opacity-80 transition-opacity group-hover:opacity-100 ${
+            isUser ? "text-white/80" : "text-[#6B726C] dark:text-[#A3B5A7]"
           }`}
         >
           <span>{timeAgo(message.created_at)}</span>
@@ -164,7 +164,7 @@ export function ChatMessageItem({
               className={`cursor-pointer rounded p-1 transition-colors ${
                 isUser
                   ? "hover:bg-white/20 text-white"
-                  : "hover:bg-slate-200 text-slate-600 dark:hover:bg-slate-700 dark:text-slate-300"
+                  : "hover:bg-[#FAF7F2] text-[#6B726C] dark:hover:bg-[#243226] dark:text-[#A3B5A7]"
               }`}
               title="Copy message"
             >
@@ -175,7 +175,7 @@ export function ChatMessageItem({
               <button
                 type="button"
                 onClick={() => onEditPrompt(message.content)}
-                className="cursor-pointer rounded p-1 text-white hover:bg-white/20 transition-colors"
+                className="cursor-pointer rounded p-1 text-white/80 hover:bg-white/20 transition-colors"
                 title="Edit prompt"
               >
                 <Edit2 className="size-3" />
@@ -188,7 +188,7 @@ export function ChatMessageItem({
                 size="sm"
                 loading={isRegenerating}
                 onClick={onRegenerate}
-                className="h-6 px-1.5 text-[10px] text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white"
+                className="h-6 px-1.5 font-mono text-[10px] text-[#6B726C] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:text-white"
                 title="Regenerate response"
               >
                 <RefreshCw className="size-3" />

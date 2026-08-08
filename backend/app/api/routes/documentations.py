@@ -9,6 +9,7 @@ from app.services.documentation_service import (
     _get_diagrams_dict,
     export_html,
     export_markdown,
+    export_pdf,
     get_or_create_documentation,
     regenerate_documentation,
     resolve_user_blueprint,
@@ -87,9 +88,10 @@ def export_documentation_file(
             headers={"Content-Disposition": f'attachment; filename="{safe_title}_documentation.html"'},
         )
     else:  # pdf
-        content = export_html(doc.data, blueprint.title, diagrams)
+        pdf_bytes = export_pdf(doc.data, blueprint.title, diagrams)
         return Response(
-            content=content,
-            media_type="text/html; charset=utf-8",
-            headers={"Content-Disposition": f'attachment; filename="{safe_title}_documentation.pdf.html"'},
+            content=pdf_bytes,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f'attachment; filename="{safe_title}_documentation.pdf"'},
         )
+

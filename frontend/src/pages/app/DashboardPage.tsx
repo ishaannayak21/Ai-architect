@@ -76,11 +76,11 @@ export function DashboardPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <h2 className="text-2xl font-bold tracking-tight">
+        <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">
           Welcome back, {firstName}
         </h2>
-        <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
-          Your ideas are ready to become architecture.
+        <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
+          Your architectural ideas are ready to be transformed into blueprints.
         </p>
       </motion.div>
 
@@ -96,47 +96,48 @@ export function DashboardPage() {
               icon={<FolderKanban className="size-4.5" />}
               label="Total projects"
               value={String(projects.length)}
-              hint="Ideas in your workspace"
+              hint="Ideas in workspace"
+              accentClassName="bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]"
             />
             <StatCard
               icon={<RefreshCw className="size-4.5" />}
               label="Updated this week"
               value={String(recentlyUpdated.length)}
-              hint="Active in the last 7 days"
-              accentClassName="bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300"
+              hint="Active in last 7 days"
+              accentClassName="bg-[#E8F0EA] text-[#223829] border border-[#C5D8C9] dark:bg-[#243226] dark:text-[#A3B5A7]"
             />
             <StatCard
               icon={<FileText className="size-4.5" />}
               label="Description words"
               value={totalWords.toLocaleString()}
-              hint="Context for the AI engine"
-              accentClassName="bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-300"
+              hint="AI engine context"
+              accentClassName="bg-[#FAF7F2] text-[#1F2421] border border-[#E6DFD5] dark:bg-[#1E2B21] dark:text-[#E6ECE7]"
             />
             <StatCard
               icon={<CalendarDays className="size-4.5" />}
               label="Started this month"
               value={String(createdThisMonth.length)}
               hint="New ideas this month"
-              accentClassName="bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300"
+              accentClassName="bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]"
             />
           </>
         )}
       </div>
 
       {/* Quick actions */}
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {QUICK_ACTIONS.map(({ label, description, icon: Icon, to }) => (
           <Link key={label} to={to}>
             <Card
               hover
-              className="group flex items-center gap-3 p-4"
+              className="group flex items-center gap-4 p-5"
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-500/10 text-brand-500 transition-colors group-hover:bg-brand-500 group-hover:text-white dark:bg-brand-400/10 dark:text-brand-300">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] text-[#1F2421] transition-all group-hover:border-[#C05621] group-hover:bg-[#C05621] group-hover:text-white dark:border-[#2B3D2F] dark:bg-[#1A241C] dark:text-[#E6ECE7]">
                 <Icon className="size-4.5" />
               </span>
               <div className="min-w-0">
-                <p className="font-medium">{label}</p>
-                <p className="truncate text-xs text-ink/45 dark:text-white/45">
+                <p className="font-serif font-bold text-[#1F2421] dark:text-[#E6ECE7] text-base">{label}</p>
+                <p className="truncate font-sans text-xs text-[#6B726C] dark:text-[#A3B5A7]">
                   {description}
                 </p>
               </div>
@@ -148,12 +149,12 @@ export function DashboardPage() {
       {/* Recent projects */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold tracking-tight">Recent projects</h3>
+          <h3 className="font-serif text-2xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">Recent projects</h3>
           <Link
             to={ROUTES.PROJECTS}
-            className="text-sm font-medium text-brand-500 hover:text-brand-400"
+            className="font-mono text-xs font-semibold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
           >
-            View all
+            View all projects →
           </Link>
         </div>
 

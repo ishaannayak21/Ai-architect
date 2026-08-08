@@ -54,22 +54,22 @@ export function LoginPage() {
 
   return (
     <AuthLayout
-      title="Welcome back"
+      title="Welcome Back"
       subtitle={
         <>
           Don&apos;t have an account?{" "}
           <Link
             to={ROUTES.REGISTER}
-            className="font-medium text-brand-500 hover:text-brand-400"
+            className="font-mono text-xs font-bold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
           >
-            Create one
+            Create one →
           </Link>
         </>
       }
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <Input
-          label="Email"
+          label="Email Address"
           type="email"
           placeholder="you@example.com"
           autoComplete="email"
@@ -90,7 +90,7 @@ export function LoginPage() {
           className="w-full"
           loading={isSubmitting}
         >
-          {isSubmitting ? "Signing in…" : "Sign in"}
+          {isSubmitting ? "Signing in…" : "Sign In to Workspace"}
         </Button>
       </form>
     </AuthLayout>

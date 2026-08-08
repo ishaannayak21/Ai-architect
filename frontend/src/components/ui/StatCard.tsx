@@ -15,16 +15,20 @@ export function StatCard({
   label,
   value,
   hint,
-  accentClassName = "bg-brand-500/10 text-brand-500 dark:bg-brand-400/10 dark:text-brand-300",
+  accentClassName = "bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]",
 }: StatCardProps) {
   return (
-    <Card className="p-5">
+    <Card className="p-6">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm text-ink/60 dark:text-white/50">{label}</p>
-          <p className="mt-1.5 text-2xl font-semibold tracking-tight">{value}</p>
+          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#6B726C] dark:text-[#A3B5A7]">
+            {label}
+          </p>
+          <p className="mt-2.5 font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
+            {value}
+          </p>
           {hint ? (
-            <p className="mt-1 text-xs text-ink/45 dark:text-white/40">{hint}</p>
+            <p className="mt-1 font-sans text-xs text-[#6B726C] dark:text-[#A3B5A7]">{hint}</p>
           ) : null}
         </div>
         <div className={`flex size-10 items-center justify-center rounded-xl ${accentClassName}`}>

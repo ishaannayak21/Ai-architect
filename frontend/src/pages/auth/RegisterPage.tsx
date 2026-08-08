@@ -75,22 +75,22 @@ export function RegisterPage() {
 
   return (
     <AuthLayout
-      title="Create your account"
+      title="Create Your Account"
       subtitle={
         <>
           Already registered?{" "}
           <Link
             to={ROUTES.LOGIN}
-            className="font-medium text-brand-500 hover:text-brand-400"
+            className="font-mono text-xs font-bold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
           >
-            Sign in
+            Sign in →
           </Link>
         </>
       }
     >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <Input
-          label="Full name"
+          label="Full Name"
           placeholder="Ada Lovelace"
           autoComplete="name"
           leftIcon={<UserIcon className="size-4" />}
@@ -98,7 +98,7 @@ export function RegisterPage() {
           {...register("name")}
         />
         <Input
-          label="Email"
+          label="Email Address"
           type="email"
           placeholder="you@example.com"
           autoComplete="email"
@@ -114,7 +114,7 @@ export function RegisterPage() {
           {...register("password")}
         />
         <PasswordInput
-          label="Confirm password"
+          label="Confirm Password"
           placeholder="Repeat your password"
           autoComplete="new-password"
           error={errors.confirmPassword?.message}
@@ -126,9 +126,9 @@ export function RegisterPage() {
           className="w-full"
           loading={isSubmitting}
         >
-          {isSubmitting ? "Creating account…" : "Create account"}
+          {isSubmitting ? "Creating account…" : "Create Account"}
         </Button>
-        <p className="text-center text-xs text-ink/45 dark:text-white/40">
+        <p className="text-center font-mono text-[11px] text-stone-500 dark:text-stone-400">
           By continuing you agree to our terms and privacy policy.
         </p>
       </form>

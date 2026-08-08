@@ -177,11 +177,11 @@ export function DocumentationViewer({
   return (
     <div className="space-y-6">
       {/* Header Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-ink/10 bg-white/70 p-4 backdrop-blur-md dark:border-white/10 dark:bg-ink-dark/70">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-stone-300/80 bg-white/90 p-4 shadow-2xs backdrop-blur-md dark:border-stone-800/80 dark:bg-stone-900/90">
         <div className="flex flex-1 items-center gap-3 min-w-[240px]">
           <div className="relative w-full max-w-md">
             <Input
-              placeholder="Search documentation sections or text…"
+              placeholder="Search documentation sections or specs…"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               leftIcon={<Search className="size-4" />}
@@ -199,34 +199,30 @@ export function DocumentationViewer({
             Print
           </Button>
 
-          {/* Download Dropdown / Buttons */}
-          <div className="flex items-center rounded-lg border border-ink/15 dark:border-white/15">
+          {/* Export Buttons */}
+          <div className="flex items-center rounded-xl border border-stone-300/80 bg-stone-100/60 p-0.5 dark:border-stone-700/80 dark:bg-stone-800">
             <button
               onClick={() => handleDownload("pdf")}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-brand-500/10 hover:text-brand-500 dark:text-white"
-              title="Download PDF format"
+              className="inline-flex items-center gap-1 px-2.5 py-1 font-mono text-xs font-semibold text-stone-700 hover:text-amber-600 dark:text-stone-300 dark:hover:text-amber-400"
+              title="Download PDF"
             >
               <FileText className="size-3.5" />
               PDF
             </button>
-
-            <span className="h-4 w-px bg-ink/15 dark:bg-white/15" />
-
+            <span className="h-3.5 w-px bg-stone-300 dark:bg-stone-700" />
             <button
               onClick={() => handleDownload("markdown")}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-brand-500/10 hover:text-brand-500 dark:text-white"
-              title="Download Markdown format"
+              className="inline-flex items-center gap-1 px-2.5 py-1 font-mono text-xs font-semibold text-stone-700 hover:text-amber-600 dark:text-stone-300 dark:hover:text-amber-400"
+              title="Download Markdown"
             >
               <FileCode className="size-3.5" />
               MD
             </button>
-
-            <span className="h-4 w-px bg-ink/15 dark:bg-white/15" />
-
+            <span className="h-3.5 w-px bg-stone-300 dark:bg-stone-700" />
             <button
               onClick={() => handleDownload("html")}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-brand-500/10 hover:text-brand-500 dark:text-white"
-              title="Download HTML format"
+              className="inline-flex items-center gap-1 px-2.5 py-1 font-mono text-xs font-semibold text-stone-700 hover:text-amber-600 dark:text-stone-300 dark:hover:text-amber-400"
+              title="Download HTML"
             >
               <Download className="size-3.5" />
               HTML
@@ -235,7 +231,7 @@ export function DocumentationViewer({
 
           <Button variant="secondary" size="sm" loading={isRegenerating} onClick={onRegenerate}>
             <RefreshCw className="size-4" />
-            Regenerate Documentation
+            Regenerate
           </Button>
         </div>
       </div>
@@ -244,19 +240,19 @@ export function DocumentationViewer({
       <div className="grid gap-6 lg:grid-cols-4">
         {/* TOC Sidebar */}
         <div className="hidden lg:block lg:col-span-1">
-          <div className="sticky top-6 space-y-1.5 rounded-2xl border border-ink/10 bg-white/50 p-4 backdrop-blur-sm dark:border-white/10 dark:bg-ink-dark/50">
-            <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-ink/40 dark:text-white/40">
-              Table of Contents
+          <div className="sticky top-20 space-y-1.5 rounded-2xl border border-stone-200/90 bg-white/90 p-4 shadow-2xs dark:border-stone-800/90 dark:bg-stone-900/90">
+            <h4 className="mb-2.5 font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+              [ TABLE OF CONTENTS ]
             </h4>
             <nav className="space-y-1 text-xs">
               {SECTIONS.map((sec) => (
                 <a
                   key={sec.key}
                   href={`#sec-${sec.number}`}
-                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-ink/70 transition-colors hover:bg-brand-500/10 hover:text-brand-500 dark:text-white/70 dark:hover:bg-brand-400/10 dark:hover:text-brand-300"
+                  className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 font-display text-xs font-medium text-stone-600 transition-all hover:bg-amber-500/10 hover:text-amber-700 dark:text-stone-400 dark:hover:bg-amber-400/10 dark:hover:text-amber-300"
                 >
-                  <span className="font-mono text-[10px] text-ink/40 dark:text-white/40">
-                    {sec.number}.
+                  <span className="font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
+                    {sec.number < 10 ? `0${sec.number}` : sec.number}.
                   </span>
                   <span className="truncate">{sec.title}</span>
                 </a>
@@ -278,23 +274,23 @@ export function DocumentationViewer({
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <Card className="overflow-hidden p-0 border border-ink/10 dark:border-white/10">
+                <Card className="overflow-hidden p-0 border border-stone-200/90 dark:border-stone-800/90">
                   {/* Card Header */}
-                  <div className="flex items-center justify-between gap-3 p-4 bg-ink/[0.02] dark:bg-white/[0.02] border-b border-ink/10 dark:border-white/10">
+                  <div className="flex items-center justify-between gap-3 p-4 bg-[#FAF7F2] dark:bg-[#141C16] border-b border-[#E6DFD5] dark:border-[#2B3D2F]">
                     <button
                       type="button"
                       onClick={() => toggleSection(sec.key as string)}
-                      className="flex flex-1 items-center gap-3 text-left"
+                      className="flex flex-1 items-center gap-3.5 text-left"
                     >
-                      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-brand-500/10 text-brand-500 dark:bg-brand-400/10 dark:text-brand-300 font-mono text-xs font-bold">
-                        {sec.number}
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-xl border border-[#C5D8C9] bg-[#E8F0EA] font-mono text-xs font-bold text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]">
+                        {sec.number < 10 ? `0${sec.number}` : sec.number}
                       </span>
-                      <Icon className="size-4 text-brand-500 dark:text-brand-400 shrink-0" />
-                      <h3 className="font-semibold text-base tracking-tight">{sec.title}</h3>
+                      <Icon className="size-4.5 text-[#C05621] dark:text-[#E07A48] shrink-0" />
+                      <h3 className="font-serif text-lg font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">{sec.title}</h3>
                       {isCollapsed ? (
-                        <ChevronRight className="size-4 text-ink/40 dark:text-white/40 ml-auto" />
+                        <ChevronRight className="size-4 text-[#6B726C] dark:text-[#A3B5A7] ml-auto" />
                       ) : (
-                        <ChevronDown className="size-4 text-ink/40 dark:text-white/40 ml-auto" />
+                        <ChevronDown className="size-4 text-[#6B726C] dark:text-[#A3B5A7] ml-auto" />
                       )}
                     </button>
 
@@ -302,7 +298,7 @@ export function DocumentationViewer({
                       variant="ghost"
                       size="sm"
                       onClick={() => handleCopySection(sec.key, sec.title)}
-                      className="text-xs shrink-0"
+                      className="text-xs shrink-0 font-mono"
                     >
                       {copiedSection === sec.key ? (
                         <Check className="size-3.5 text-emerald-500" />
@@ -315,20 +311,20 @@ export function DocumentationViewer({
 
                   {/* Card Body */}
                   {!isCollapsed && (
-                    <div className="p-5 space-y-4 text-sm leading-relaxed">
+                    <div className="p-5 space-y-4 text-sm leading-relaxed text-stone-700 dark:text-stone-300">
                       {sec.key === "executive_summary" && (
-                        <p className="text-ink/80 dark:text-white/80">{data.executive_summary}</p>
+                        <p>{data.executive_summary}</p>
                       )}
 
                       {sec.key === "project_vision" && (
-                        <p className="text-ink/80 dark:text-white/80">{data.project_vision}</p>
+                        <p>{data.project_vision}</p>
                       )}
 
                       {sec.key === "functional_requirements" && (
                         <ul className="space-y-2">
                           {(data.functional_requirements || []).map((req, i) => (
-                            <li key={i} className="flex items-start gap-2 text-ink/80 dark:text-white/80">
-                              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-emerald-500" />
+                            <li key={i} className="flex items-start gap-2.5">
+                              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-emerald-500" />
                               <span>{req}</span>
                             </li>
                           ))}
@@ -338,8 +334,8 @@ export function DocumentationViewer({
                       {sec.key === "non_functional_requirements" && (
                         <ul className="space-y-2">
                           {(data.non_functional_requirements || []).map((req, i) => (
-                            <li key={i} className="flex items-start gap-2 text-ink/80 dark:text-white/80">
-                              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-500" />
+                            <li key={i} className="flex items-start gap-2.5">
+                              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-amber-500" />
                               <span>{req}</span>
                             </li>
                           ))}
@@ -360,23 +356,23 @@ export function DocumentationViewer({
                       {sec.key === "use_cases" && (
                         <div className="space-y-4">
                           {(data.use_cases || []).map((uc, i) => (
-                            <div key={i} className="rounded-xl border border-ink/10 p-4 dark:border-white/10 space-y-2">
+                            <div key={i} className="rounded-xl border border-stone-200/90 bg-stone-100/40 p-4 dark:border-stone-800/90 dark:bg-stone-850/40 space-y-2">
                               <div className="flex items-center justify-between">
-                                <h4 className="font-semibold text-brand-500 dark:text-brand-400">{uc.title}</h4>
+                                <h4 className="font-display font-bold text-amber-700 dark:text-amber-400">{uc.title}</h4>
                                 <Badge variant="neutral">Actor: {uc.actor}</Badge>
                               </div>
-                              <p className="text-xs text-ink/60 dark:text-white/60">
+                              <p className="text-xs text-stone-600 dark:text-stone-400">
                                 <strong>Preconditions:</strong> {uc.preconditions}
                               </p>
                               <div>
-                                <strong className="text-xs text-ink/70 dark:text-white/70">Main Flow:</strong>
-                                <ol className="mt-1 space-y-1 text-xs text-ink/80 dark:text-white/80 list-decimal list-inside">
+                                <strong className="text-xs text-stone-700 dark:text-stone-300">Main Flow:</strong>
+                                <ol className="mt-1 space-y-1 text-xs text-stone-700 dark:text-stone-300 list-decimal list-inside font-mono">
                                   {(uc.main_flow || []).map((step, sIdx) => (
                                     <li key={sIdx}>{step}</li>
                                   ))}
                                 </ol>
                               </div>
-                              <p className="text-xs text-ink/60 dark:text-white/60">
+                              <p className="text-xs text-stone-600 dark:text-stone-400">
                                 <strong>Postconditions:</strong> {uc.postconditions}
                               </p>
                             </div>
@@ -387,7 +383,7 @@ export function DocumentationViewer({
                       {sec.key === "tech_stack" && (
                         <div className="flex flex-wrap gap-2">
                           {(data.tech_stack || []).map((tech, i) => (
-                            <span key={i} className="rounded-lg bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-500 dark:bg-brand-400/10 dark:text-brand-300">
+                            <span key={i} className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-xs font-semibold text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-300">
                               {tech}
                             </span>
                           ))}
@@ -398,7 +394,7 @@ export function DocumentationViewer({
                         <div className="space-y-4">
                           {diagrams.database_er && (
                             <div className="mb-4">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-white/50 mb-2">
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
                                 Database ER Diagram
                               </h4>
                               <MermaidDiagram code={diagrams.database_er.mermaid_code} />
@@ -406,14 +402,14 @@ export function DocumentationViewer({
                           )}
                           <div className="space-y-3">
                             {(data.database_tables || []).map((tbl, i) => (
-                              <div key={i} className="rounded-xl border border-ink/10 p-3 dark:border-white/10">
+                              <div key={i} className="rounded-xl border border-stone-200/90 bg-stone-100/40 p-3.5 dark:border-stone-800/90 dark:bg-stone-850/40">
                                 <div className="flex items-center justify-between">
-                                  <span className="font-mono font-semibold text-sm">{tbl.name}</span>
-                                  <span className="text-xs text-ink/50 dark:text-white/50">{tbl.purpose}</span>
+                                  <span className="font-mono font-bold text-sm text-stone-900 dark:text-stone-100">{tbl.name}</span>
+                                  <span className="font-mono text-xs text-stone-500 dark:text-stone-400">{tbl.purpose}</span>
                                 </div>
-                                <div className="mt-2 flex flex-wrap gap-1.5">
+                                <div className="mt-2.5 flex flex-wrap gap-1.5">
                                   {(tbl.columns || []).map((col, cIdx) => (
-                                    <span key={cIdx} className="rounded-md bg-ink/[0.05] px-2 py-0.5 font-mono text-[11px] text-ink/70 dark:bg-white/[0.07] dark:text-white/70">
+                                    <span key={cIdx} className="rounded-md border border-stone-200 bg-white px-2 py-0.5 font-mono text-[11px] text-stone-700 shadow-2xs dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300">
                                       {col}
                                     </span>
                                   ))}
@@ -428,24 +424,24 @@ export function DocumentationViewer({
                         <div className="space-y-4">
                           {diagrams.api_sequence && (
                             <div className="mb-4">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-white/50 mb-2">
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
                                 API Sequence Diagram
                               </h4>
                               <MermaidDiagram code={diagrams.api_sequence.mermaid_code} />
                             </div>
                           )}
-                          <div className="space-y-2">
+                          <div className="space-y-2.5">
                             {(data.api_endpoints || []).map((ep, i) => (
-                              <div key={i} className="flex items-center gap-3 rounded-xl border border-ink/10 p-3 dark:border-white/10">
-                                <span className={`px-2 py-0.5 rounded font-mono text-xs font-bold text-white ${
-                                  ep.method.toUpperCase() === 'GET' ? 'bg-sky-500' :
-                                  ep.method.toUpperCase() === 'POST' ? 'bg-emerald-500' :
-                                  ep.method.toUpperCase() === 'PUT' || ep.method.toUpperCase() === 'PATCH' ? 'bg-amber-500' : 'bg-red-500'
+                              <div key={i} className="flex items-center gap-3 rounded-xl border border-stone-200/90 bg-stone-100/40 p-3.5 dark:border-stone-800/90 dark:bg-stone-850/40">
+                                <span className={`px-2 py-0.5 rounded font-mono text-[11px] font-bold text-white uppercase ${
+                                  ep.method.toUpperCase() === 'GET' ? 'bg-sky-600' :
+                                  ep.method.toUpperCase() === 'POST' ? 'bg-emerald-600' :
+                                  ep.method.toUpperCase() === 'PUT' || ep.method.toUpperCase() === 'PATCH' ? 'bg-amber-600' : 'bg-rose-600'
                                 }`}>
                                   {ep.method.toUpperCase()}
                                 </span>
-                                <span className="font-mono text-xs font-semibold">{ep.path}</span>
-                                <span className="text-xs text-ink/60 dark:text-white/60 ml-auto">{ep.description}</span>
+                                <span className="font-mono text-xs font-semibold text-stone-900 dark:text-stone-100">{ep.path}</span>
+                                <span className="text-xs text-stone-500 dark:text-stone-400 ml-auto">{ep.description}</span>
                               </div>
                             ))}
                           </div>
@@ -453,17 +449,17 @@ export function DocumentationViewer({
                       )}
 
                       {sec.key === "folder_structure" && (
-                        <pre className="overflow-x-auto rounded-xl bg-ink/[0.03] p-4 font-mono text-xs text-ink/80 dark:bg-white/[0.04] dark:text-white/80">
+                        <pre className="overflow-x-auto rounded-xl border border-stone-300/70 bg-stone-950 p-4 font-mono text-xs leading-relaxed text-amber-300 dark:border-stone-800">
                           {Array.isArray(data.folder_structure) ? data.folder_structure.join("\n") : data.folder_structure}
                         </pre>
                       )}
 
                       {sec.key === "system_architecture_description" && (
                         <div className="space-y-4">
-                          <p className="text-ink/80 dark:text-white/80">{data.system_architecture_description}</p>
+                          <p>{data.system_architecture_description}</p>
                           {diagrams.system_architecture && (
                             <div>
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-white/50 mb-2">
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
                                 System Architecture Diagram
                               </h4>
                               <MermaidDiagram code={diagrams.system_architecture.mermaid_code} />
@@ -476,7 +472,7 @@ export function DocumentationViewer({
                         <div className="space-y-4">
                           {diagrams.deployment && (
                             <div className="mb-4">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-white/50 mb-2">
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
                                 Deployment Diagram
                               </h4>
                               <MermaidDiagram code={diagrams.deployment.mermaid_code} />
@@ -484,8 +480,8 @@ export function DocumentationViewer({
                           )}
                           <ul className="space-y-2">
                             {(data.deployment_strategy || []).map((dep, i) => (
-                              <li key={i} className="flex items-start gap-2 text-ink/80 dark:text-white/80">
-                                <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-violet-500" />
+                              <li key={i} className="flex items-start gap-2.5">
+                                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-amber-500" />
                                 <span>{dep}</span>
                               </li>
                             ))}
@@ -497,7 +493,7 @@ export function DocumentationViewer({
                         <div className="space-y-4">
                           {diagrams.application_flowchart && (
                             <div className="mb-4">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-ink/50 dark:text-white/50 mb-2">
+                              <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-2">
                                 Workflow Flowchart
                               </h4>
                               <MermaidDiagram code={diagrams.application_flowchart.mermaid_code} />
@@ -505,8 +501,8 @@ export function DocumentationViewer({
                           )}
                           <ul className="space-y-2">
                             {(data.development_timeline || []).map((step, i) => (
-                              <li key={i} className="flex items-start gap-2 text-ink/80 dark:text-white/80">
-                                <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-500" />
+                              <li key={i} className="flex items-start gap-2.5">
+                                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-amber-500" />
                                 <span>{step}</span>
                               </li>
                             ))}
@@ -517,14 +513,14 @@ export function DocumentationViewer({
                       {sec.key === "future_enhancements" && (
                         <div className="grid gap-3 sm:grid-cols-2">
                           {(data.future_enhancements || []).map((fe, i) => (
-                            <div key={i} className="rounded-xl border border-ink/10 p-4 dark:border-white/10 space-y-1.5">
+                            <div key={i} className="rounded-xl border border-stone-200/90 bg-stone-100/40 p-4 dark:border-stone-800/90 dark:bg-stone-850/40 space-y-1.5">
                               <div className="flex items-center justify-between">
-                                <h4 className="font-semibold text-sm">{fe.title}</h4>
+                                <h4 className="font-display font-bold text-sm text-stone-900 dark:text-stone-100">{fe.title}</h4>
                                 <Badge variant={fe.impact === 'High' ? 'danger' : 'warning'}>
                                   {fe.impact} Impact
                                 </Badge>
                               </div>
-                              <p className="text-xs text-ink/70 dark:text-white/70">{fe.description}</p>
+                              <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">{fe.description}</p>
                             </div>
                           ))}
                         </div>

@@ -10,10 +10,11 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl border border-ink/10 bg-white/60 text-ink/70 transition-colors hover:bg-white hover:text-ink dark:border-white/10 dark:bg-white/[0.05] dark:text-white/70 dark:hover:bg-white/[0.1] dark:hover:text-white"
+      className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] text-[#1F2421] shadow-2xs transition-all duration-200 hover:border-[#223829]/30 hover:bg-[#FAF7F2] dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7] dark:hover:border-[#A3B5A7]/40 dark:hover:bg-[#243226]"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDark ? "Switch to Ivory Paper or Forest Night theme" : "Switch to Ivory Paper or Forest Night theme"}
     >
-      {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
+      {isDark ? <Sun className="size-4 text-[#E07A48]" /> : <Moon className="size-4 text-[#1F2421]" />}
     </button>
   );
 }

@@ -8,11 +8,12 @@ from app.utils.exceptions import CredentialsError, EmailAlreadyRegisteredError
 
 
 def register_user(db: Session, payload: UserCreate) -> User:
-    if get_user_by_email(db, payload.email):
+    email = payload.email.strip().lower()
+    if get_user_by_email(db, email):
         raise EmailAlreadyRegisteredError()
     user = User(
         name=payload.name.strip(),
-        email=payload.email,
+        email=email,
         password=hash_password(payload.password),
     )
     db.add(user)

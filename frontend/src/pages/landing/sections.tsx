@@ -29,10 +29,10 @@ const fadeUp = {
 export function Hero() {
   return (
     <section className="relative overflow-hidden pb-20 pt-32 sm:pt-40">
-      {/* Animated background */}
+      {/* Retro grid background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[28rem] w-[52rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-400/30 via-violet-400/30 to-brand-500/30 blur-3xl" />
-        <div className="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+        <div className="absolute left-1/2 top-0 h-[28rem] w-[52rem] -translate-x-1/2 rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute inset-0 bg-grid opacity-70 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]" />
       </div>
 
       <motion.div
@@ -46,26 +46,26 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.1 }}
         >
-          <Badge variant="brand" className="px-3 py-1 text-sm">
+          <Badge variant="brand" className="px-3.5 py-1 text-xs font-semibold tracking-wider uppercase">
             <Sparkles className="size-3.5" />
-            AI Software Architect
+            [ AI SOFTWARE ARCHITECT ENGINE ]
           </Badge>
         </motion.div>
 
-        <h1 className="mt-6 text-balance text-4xl font-bold leading-tight tracking-tight sm:text-6xl">
+        <h1 className="mt-6 text-balance font-serif text-4xl font-bold leading-[1.15] tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-6xl">
           Turn a single sentence into a{" "}
-          <span className="bg-gradient-to-r from-brand-500 to-violet-500 bg-clip-text text-transparent">
+          <span className="text-[#C05621] underline decoration-[#C05621]/30 underline-offset-8 dark:text-[#E07A48]">
             complete software blueprint
           </span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-xl text-pretty text-lg text-ink/60 dark:text-white/55">
+        <p className="mx-auto mt-6 max-w-xl text-pretty font-sans text-lg text-[#4A524C] dark:text-[#A3B5A7]">
           Describe your idea — "Build an E-commerce Platform." Our engine drafts
           requirements, database design, API endpoints, architecture, diagrams,
           deployment plans and more in seconds.
         </p>
 
-        <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
           <Link to={ROUTES.REGISTER}>
             <Button size="lg">
               Start building free
@@ -74,13 +74,13 @@ export function Hero() {
           </Link>
           <Link to={ROUTES.LOGIN}>
             <Button size="lg" variant="secondary">
-              Sign in
+              Sign in to workspace
             </Button>
           </Link>
         </div>
 
-        <p className="mt-5 text-xs text-ink/40 dark:text-white/40">
-          Free to start · No credit card required · Milestone 1 preview
+        <p className="mt-5 font-mono text-xs text-stone-500">
+          Free to start · Instant Blueprint Generation · Security Ready
         </p>
       </motion.div>
 
@@ -91,42 +91,42 @@ export function Hero() {
         transition={{ delay: 0.25, duration: 0.6 }}
         className="mx-auto mt-16 max-w-2xl px-4 sm:px-6"
       >
-        <div className="glass-card animate-float rounded-2xl p-5 shadow-xl shadow-brand-500/10">
-          <div className="flex items-center gap-2">
-            <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 text-white">
-              <Rocket className="size-4" />
+        <div className="retro-card rounded-2xl p-5 shadow-xl">
+          <div className="flex items-center gap-3 border-b border-stone-200/80 pb-3.5 dark:border-stone-800/80">
+            <span className="flex size-9 items-center justify-center rounded-xl bg-amber-500 text-stone-950 font-bold shadow-2xs">
+              <Rocket className="size-4.5" />
             </span>
             <div>
-              <p className="text-sm font-semibold">E-commerce Platform</p>
-              <p className="text-xs text-ink/45 dark:text-white/45">
-                Architecture preview
+              <p className="font-display font-bold text-stone-900 dark:text-stone-100">E-commerce Platform</p>
+              <p className="font-mono text-xs text-stone-500">
+                [ ARCHITECTURE SPECIFICATION PREVIEW ]
               </p>
             </div>
             <div className="ml-auto flex gap-1.5">
-              <span className="size-2.5 rounded-full bg-red-400/70" />
-              <span className="size-2.5 rounded-full bg-amber-400/70" />
-              <span className="size-2.5 rounded-full bg-emerald-400/70" />
+              <span className="size-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+              <span className="size-2.5 rounded-full bg-stone-300 dark:bg-stone-700" />
+              <span className="size-2.5 rounded-full bg-amber-500" />
             </div>
           </div>
-          <div className="mt-4 space-y-2">
+          <div className="mt-4 space-y-2.5">
             {[
-              { icon: Database, label: "Database", value: "12 tables · 3 indexes" },
-              { icon: FileCode2, label: "API", value: "28 endpoints · REST" },
-              { icon: FolderTree, label: "Structure", value: "Clean architecture" },
-              { icon: LineChart, label: "Cost", value: "~$1.4k / mo at scale" },
+              { icon: Database, label: "Database Schema", value: "12 tables · PostgreSQL · Indexes" },
+              { icon: FileCode2, label: "REST API Contracts", value: "28 endpoints · Open API Spec" },
+              { icon: FolderTree, label: "Directory Layout", value: "Clean Layered Architecture" },
+              { icon: LineChart, label: "Cost & Scale Model", value: "~$1.4k / mo estimated scale" },
             ].map(({ icon: Icon, label, value }, index) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, x: -12 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + index * 0.12 }}
-                className="flex items-center gap-3 rounded-xl bg-ink/[0.03] px-3 py-2.5 dark:bg-white/[0.04]"
+                className="flex items-center gap-3 rounded-xl border border-stone-200/60 bg-stone-100/60 px-3.5 py-2.5 dark:border-stone-800/60 dark:bg-stone-800/40"
               >
-                <Icon className="size-4 text-brand-500" />
-                <span className="text-xs font-medium text-ink/70 dark:text-white/70">
+                <Icon className="size-4 text-amber-600 dark:text-amber-400" />
+                <span className="font-display text-xs font-semibold text-stone-800 dark:text-stone-200">
                   {label}
                 </span>
-                <span className="ml-auto text-xs text-ink/45 dark:text-white/45">
+                <span className="ml-auto font-mono text-xs text-stone-500 dark:text-stone-400">
                   {value}
                 </span>
               </motion.div>
@@ -142,42 +142,42 @@ const features = [
   {
     icon: Sparkles,
     title: "Requirements",
-    description: "Structured, prioritized requirements derived from your idea.",
+    description: "Structured, prioritized functional specifications derived from your prompt.",
   },
   {
     icon: Database,
     title: "Database Design",
-    description: "Normalized schema with tables, relationships and indexes.",
+    description: "Normalized SQL/NoSQL schema with tables, relationships and indexes.",
   },
   {
     icon: Workflow,
     title: "API Endpoints",
-    description: "REST endpoints with methods, payloads and error handling.",
+    description: "REST & GraphQL endpoint specs with methods, payloads and status codes.",
   },
   {
     icon: FolderTree,
     title: "Folder Structure",
-    description: "Production-grade directory layout for any stack.",
+    description: "Production-grade repository layout tailored to your tech stack.",
   },
   {
     icon: Network,
     title: "System Architecture",
-    description: "Components, services and data flow visualized end-to-end.",
+    description: "Component hierarchy, microservice boundaries and data flow.",
   },
   {
     icon: Layers,
-    title: "Diagrams",
-    description: "Auto-generated Mermaid diagrams you can embed anywhere.",
+    title: "Mermaid Diagrams",
+    description: "Auto-generated Mermaid sequence, ERD, and architecture diagrams.",
   },
   {
     icon: LineChart,
-    title: "Cost Estimation",
-    description: "Infrastructure and operating cost forecasts by scale.",
+    title: "Cost & Scaling",
+    description: "Infrastructure tier forecasts and cloud cost estimation by scale.",
   },
   {
     icon: Rocket,
     title: "Deployment Plan",
-    description: "CI/CD, hosting, domains and rollout strategy included.",
+    description: "CI/CD pipelines, containerization, DNS setup and rollout strategy.",
   },
 ];
 
@@ -186,13 +186,12 @@ export function Features() {
     <section id="features" className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-xl text-center">
-          <Badge variant="brand">Features</Badge>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Everything your idea needs to ship
+          <Badge variant="brand">FEATURES MATRIX</Badge>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
+            Everything your software idea needs to ship
           </h2>
-          <p className="mt-3 text-pretty text-ink/55 dark:text-white/50">
-            Stop hand-writing specs. Generate a complete engineering blueprint
-            from a single prompt.
+          <p className="mt-3 text-pretty text-stone-600 dark:text-stone-400">
+            Stop hand-writing architectural documents. Generate a complete engineering blueprint in under 60 seconds.
           </p>
         </motion.div>
 
@@ -205,12 +204,12 @@ export function Features() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
             >
-              <div className="glass-card group h-full rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-500/10">
-                <div className="flex size-10 items-center justify-center rounded-xl bg-brand-500/10 text-brand-500 transition-colors group-hover:bg-brand-500 group-hover:text-white dark:bg-brand-400/10 dark:text-brand-300">
+              <div className="retro-card group h-full rounded-2xl p-5 transition-all duration-200 hover:-translate-y-1 hover:border-amber-500/40">
+                <div className="flex size-10 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-700 transition-colors group-hover:bg-amber-500 group-hover:text-stone-950 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-300">
                   <Icon className="size-5" />
                 </div>
-                <h3 className="mt-4 font-semibold">{title}</h3>
-                <p className="mt-1.5 text-sm text-ink/55 dark:text-white/50">
+                <h3 className="mt-4 font-display font-bold text-stone-900 dark:text-stone-100">{title}</h3>
+                <p className="mt-1.5 text-sm text-stone-600 dark:text-stone-400">
                   {description}
                 </p>
               </div>
@@ -223,10 +222,10 @@ export function Features() {
 }
 
 const stats = [
-  { value: "10+", label: "Engineering deliverables" },
-  { value: "<60s", label: "Average generation time" },
-  { value: "3", label: "Steps from idea to plan" },
-  { value: "100%", label: "Exportable, ready to use" },
+  { value: "10+", label: "Engineering deliverables per blueprint" },
+  { value: "<60s", label: "Average generation runtime" },
+  { value: "5+", label: "Mermaid diagram types" },
+  { value: "100%", label: "Exportable & production ready" },
 ];
 
 export function Stats() {
@@ -234,15 +233,16 @@ export function Stats() {
     <section className="py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div {...fadeUp}>
-          <div className="glass relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-500 to-violet-500 p-8 text-white shadow-xl shadow-brand-500/20 sm:p-12">
-            <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-white/15 blur-3xl" />
-            <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
+          <div className="relative overflow-hidden rounded-3xl border border-stone-800 bg-stone-950 p-8 text-stone-100 shadow-xl sm:p-12">
+            <div className="absolute inset-0 bg-grid opacity-30" />
+            <div className="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-amber-500/15 blur-3xl" />
+            <div className="relative grid grid-cols-2 gap-8 lg:grid-cols-4">
               {stats.map(({ value, label }) => (
                 <div key={label}>
-                  <p className="text-3xl font-bold tracking-tight sm:text-4xl">
+                  <p className="font-display text-4xl font-bold tracking-tight text-amber-400 sm:text-5xl">
                     {value}
                   </p>
-                  <p className="mt-1.5 text-sm text-white/75">{label}</p>
+                  <p className="mt-2 font-mono text-xs uppercase tracking-wider text-stone-400">{label}</p>
                 </div>
               ))}
             </div>
@@ -258,19 +258,19 @@ const steps = [
     step: "01",
     title: "Describe your idea",
     description:
-      "Write one paragraph — or just a sentence — about what you want to build.",
+      "Write a sentence or paragraph explaining your web or mobile app concept, target users, and main goals.",
   },
   {
     step: "02",
-    title: "Generate the blueprint",
+    title: "Architect engine designs blueprint",
     description:
-      "Our engine produces requirements, schema, APIs, architecture and more.",
+      "Our AI architect constructs database models, REST contracts, system architecture, and Mermaid diagrams.",
   },
   {
     step: "03",
-    title: "Review & refine",
+    title: "Review, refine & export",
     description:
-      "Iterate on any section, then export and hand it straight to your team.",
+      "Interact with the AI Architect Chat to refine specs, view technical documentation, or export to Markdown.",
   },
 ];
 
@@ -279,9 +279,9 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-xl text-center">
-          <Badge variant="brand">How it works</Badge>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            From idea to architecture in minutes
+          <Badge variant="brand">WORKFLOW</Badge>
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
+            From idea to architecture in 3 steps
           </h2>
         </motion.div>
 
@@ -294,12 +294,12 @@ export function HowItWorks() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: index * 0.12 }}
             >
-              <div className="relative h-full rounded-2xl border border-ink/10 bg-white/50 p-6 dark:border-white/10 dark:bg-white/[0.03]">
-                <span className="bg-gradient-to-r from-brand-500 to-violet-500 bg-clip-text text-4xl font-bold text-transparent">
+              <div className="retro-card relative h-full rounded-2xl p-6">
+                <span className="font-display text-4xl font-bold text-amber-600 dark:text-amber-400">
                   {step}
                 </span>
-                <h3 className="mt-4 font-semibold">{title}</h3>
-                <p className="mt-1.5 text-sm text-ink/55 dark:text-white/50">
+                <h3 className="mt-4 font-display text-lg font-bold text-stone-900 dark:text-stone-100">{title}</h3>
+                <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
                   {description}
                 </p>
               </div>
@@ -313,24 +313,24 @@ export function HowItWorks() {
 
 const faqs: Array<{ question: string; answer: string }> = [
   {
-    question: "What exactly will the AI generate?",
+    question: "What exactly will the AI Architect generate?",
     answer:
-      "Requirements, database design, API endpoints, folder structure, system architecture, Mermaid diagrams, deployment plan, development timeline, cost estimation and documentation.",
+      "Requirements, database schema, API contracts, folder structure, system architecture, Mermaid diagrams, deployment plan, development timeline, cost estimation, and technical documentation.",
   },
   {
-    question: "What can I do today?",
+    question: "Can I refine or customize the generated blueprint?",
     answer:
-      "Milestone 1 delivers the full product foundation: secure accounts, JWT authentication, project management, and the premium app shell. AI generation arrives in the next milestone.",
+      "Yes! Every blueprint comes with an integrated AI Architect Chat window allowing you to ask questions, request modifications, or clarify architectural decisions.",
   },
   {
-    question: "Is my data secure?",
+    question: "Is my data and project idea secure?",
     answer:
-      "Passwords are hashed with bcrypt and authentication uses signed JWTs. Your projects are scoped to your account and never shared.",
+      "Passwords are salted & hashed with bcrypt and authentication uses signed JWTs. Your projects remain private to your user workspace.",
   },
   {
-    question: "Can I export the architecture?",
+    question: "Can I export the architecture diagrams and docs?",
     answer:
-      "Yes. Every generated artifact will be exportable as Markdown or Mermaid, ready to embed in Notion, GitHub, or your docs.",
+      "Yes. Every generated deliverable and Mermaid diagram can be exported or copied as clean Markdown code for Notion, GitHub, or internal documentation.",
   },
 ];
 
@@ -342,7 +342,7 @@ export function Faq() {
       <div className="mx-auto max-w-2xl px-4 sm:px-6">
         <motion.div {...fadeUp} className="text-center">
           <Badge variant="brand">FAQ</Badge>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-4xl">
             Frequently asked questions
           </h2>
         </motion.div>
@@ -357,16 +357,16 @@ export function Faq() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.3, delay: index * 0.06 }}
-                className="glass-card overflow-hidden rounded-2xl"
+                className="retro-card overflow-hidden rounded-2xl"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-stone-900 dark:text-stone-100"
                 >
-                  <span className="font-medium">{question}</span>
+                  <span>{question}</span>
                   <ChevronDown
-                    className={`size-4.5 shrink-0 text-ink/40 transition-transform duration-300 dark:text-white/40 ${isOpen ? "rotate-180" : ""}`}
+                    className={`size-4.5 shrink-0 text-stone-400 transition-transform duration-300 dark:text-stone-500 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
                 <motion.div
@@ -374,7 +374,7 @@ export function Faq() {
                   animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="px-5 pb-4 text-sm text-ink/55 dark:text-white/50">
+                  <p className="px-5 pb-4 text-sm text-stone-600 dark:text-stone-400">
                     {answer}
                   </p>
                 </motion.div>
@@ -392,15 +392,16 @@ export function CtaSection() {
     <section className="pb-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div {...fadeUp}>
-          <div className="glass relative overflow-hidden rounded-3xl border-ink/10 p-10 text-center dark:border-white/10 sm:p-16">
-            <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-brand-400/30 to-violet-400/30 blur-3xl" />
-            <h2 className="mx-auto max-w-lg text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Your next project starts with one sentence
+          <div className="relative overflow-hidden rounded-3xl border border-stone-800 bg-stone-950 p-10 text-center text-stone-100 shadow-xl sm:p-16">
+            <div className="absolute inset-0 bg-grid opacity-30" />
+            <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-amber-500/15 blur-3xl" />
+            <h2 className="relative mx-auto max-w-lg font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Your next software architecture starts with one sentence
             </h2>
-            <p className="mx-auto mt-3 max-w-md text-pretty text-ink/55 dark:text-white/50">
-              Join today and get your first blueprint — free.
+            <p className="relative mx-auto mt-3 max-w-md text-stone-400">
+              Join today and generate your first blueprint — free.
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="relative mt-8 flex justify-center">
               <Link to={ROUTES.REGISTER}>
                 <Button size="lg">
                   Create your free account

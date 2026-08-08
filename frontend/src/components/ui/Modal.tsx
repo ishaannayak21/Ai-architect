@@ -43,26 +43,26 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-stone-950/60 backdrop-blur-xs"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="glass-card relative w-full max-w-md rounded-2xl p-6 shadow-2xl"
+            className="relative w-full max-w-md rounded-2xl border border-[#E6DFD5] bg-[#FAF7F2] p-7 shadow-xl dark:border-[#2B3D2F] dark:bg-[#1E2B21]"
           >
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 cursor-pointer rounded-lg p-1.5 text-ink/40 transition-colors hover:bg-ink/[0.05] hover:text-ink dark:text-white/40 dark:hover:bg-white/[0.07] dark:hover:text-white"
+              className="absolute right-4 top-4 cursor-pointer rounded-lg p-1.5 text-[#6B726C] transition-colors hover:bg-[#F2ECE1] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:bg-[#243226] dark:hover:text-white"
               aria-label="Close"
             >
               <X className="size-4.5" />
             </button>
-            <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+            <h2 className="font-serif text-2xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">{title}</h2>
             {description ? (
-              <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
+              <p className="mt-1.5 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
                 {description}
               </p>
             ) : null}

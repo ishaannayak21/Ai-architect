@@ -49,25 +49,25 @@ function SectionCard({
   accent?: "brand" | "emerald" | "violet" | "amber";
 }) {
   const accentClasses: Record<string, string> = {
-    brand: "bg-brand-500/10 text-brand-500 dark:bg-brand-400/10 dark:text-brand-300",
+    brand: "border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]",
     emerald:
-      "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/10 dark:text-emerald-300",
+      "border-[#C5D8C9] bg-[#E8F0EA] text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]",
     violet:
-      "bg-violet-500/10 text-violet-600 dark:bg-violet-400/10 dark:text-violet-300",
-    amber: "bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-300",
+      "border-[#E6DFD5] bg-[#FAF7F2] text-[#1F2421] dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7]",
+    amber: "border-[#F3D9C8] bg-[#FDF3EE] text-[#C05621] dark:border-[#522916] dark:bg-[#331C13] dark:text-[#E07A48]",
   };
 
   return (
-    <Card className="p-5">
-      <h3 className="flex items-center gap-2 font-semibold">
+    <Card className="p-6 sm:p-7">
+      <h3 className="flex items-center gap-3 font-serif text-xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
         <span
-          className={`flex size-8 items-center justify-center rounded-lg ${accentClasses[accent]}`}
+          className={`flex size-9 items-center justify-center rounded-xl border ${accentClasses[accent]}`}
         >
-          <Icon className="size-4" />
+          <Icon className="size-4.5" />
         </span>
         {title}
       </h3>
-      <div className="mt-3">{children}</div>
+      <div className="mt-4">{children}</div>
     </Card>
   );
 }
@@ -75,17 +75,17 @@ function SectionCard({
 function StringList({ items }: { items?: string[] }) {
   if (!items || items.length === 0) {
     return (
-      <p className="text-sm text-ink/45 dark:text-white/45">
-        No items provided.
+      <p className="font-mono text-xs text-[#6B726C]">
+        No items specified in blueprint.
       </p>
     );
   }
   return (
-    <ul className="space-y-2">
+    <ul className="space-y-3">
       {items.map((item, index) => (
-        <li key={index} className="flex items-start gap-2 text-sm">
-          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500" />
-          <span className="text-ink/75 dark:text-white/75">{item}</span>
+        <li key={index} className="flex items-start gap-3 text-sm text-[#4A524C] dark:text-[#A3B5A7] leading-relaxed font-sans">
+          <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#C05621]" />
+          <span>{item}</span>
         </li>
       ))}
     </ul>
@@ -95,8 +95,8 @@ function StringList({ items }: { items?: string[] }) {
 function TableList({ tables }: { tables?: BlueprintDatabaseTable[] }) {
   if (!tables || tables.length === 0) {
     return (
-      <p className="text-sm text-ink/45 dark:text-white/45">
-        No tables provided.
+      <p className="font-mono text-xs text-[#6B726C]">
+        No database tables provided.
       </p>
     );
   }
@@ -105,22 +105,22 @@ function TableList({ tables }: { tables?: BlueprintDatabaseTable[] }) {
       {tables.map((table, index) => (
         <div
           key={`${table.name}-${index}`}
-          className="rounded-xl border border-ink/10 p-3 dark:border-white/10"
+          className="rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4 dark:border-[#2B3D2F] dark:bg-[#1A241C]"
         >
-          <div className="flex items-center justify-between gap-2">
-            <p className="font-mono text-sm font-semibold">{table.name}</p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-mono text-sm font-bold text-[#1F2421] dark:text-[#E6ECE7]">{table.name}</p>
             {table.purpose ? (
-              <p className="truncate text-xs text-ink/45 dark:text-white/45">
+              <p className="truncate text-xs font-mono text-[#6B726C] dark:text-[#A3B5A7]">
                 {table.purpose}
               </p>
             ) : null}
           </div>
           {table.columns && table.columns.length > 0 ? (
-            <div className="mt-2 flex flex-wrap gap-1.5">
+            <div className="mt-3 flex flex-wrap gap-2">
               {table.columns.map((column, colIndex) => (
                 <span
                   key={`${column}-${colIndex}`}
-                  className="rounded-md bg-ink/[0.05] px-2 py-1 font-mono text-[11px] text-ink/65 dark:bg-white/[0.07] dark:text-white/65"
+                  className="rounded-md border border-[#E6DFD5] bg-white px-2.5 py-1 font-mono text-[11px] text-[#1F2421] shadow-2xs dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7]"
                 >
                   {column}
                 </span>
@@ -140,40 +140,40 @@ function EndpointList({
 }) {
   if (!endpoints || endpoints.length === 0) {
     return (
-      <p className="text-sm text-ink/45 dark:text-white/45">
-        No endpoints provided.
+      <p className="font-mono text-xs text-[#6B726C]">
+        No API endpoints provided.
       </p>
     );
   }
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {endpoints.map((endpoint, index) => (
         <div
           key={`${endpoint.method}-${endpoint.path}-${index}`}
-          className="flex items-start gap-3 rounded-xl border border-ink/10 p-3 dark:border-white/10"
+          className="flex items-start gap-3 rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-4 dark:border-[#2B3D2F] dark:bg-[#1A241C]"
         >
           <span
-            className={`mt-0.5 shrink-0 rounded-md px-2 py-0.5 font-mono text-[11px] font-bold text-white ${
+            className={`mt-0.5 shrink-0 rounded-md px-2.5 py-1 font-mono text-[11px] font-bold text-white uppercase ${
               endpoint.method.toUpperCase() === "GET"
-                ? "bg-sky-500"
+                ? "bg-[#223829]"
                 : endpoint.method.toUpperCase() === "POST"
-                  ? "bg-emerald-500"
+                  ? "bg-[#C05621]"
                   : endpoint.method.toUpperCase() === "PATCH" ||
                       endpoint.method.toUpperCase() === "PUT"
-                    ? "bg-amber-500"
+                    ? "bg-[#A8481A]"
                     : endpoint.method.toUpperCase() === "DELETE"
-                      ? "bg-red-500"
-                      : "bg-ink/40"
+                      ? "bg-[#C05621]"
+                      : "bg-[#4A524C]"
             }`}
           >
             {endpoint.method.toUpperCase()}
           </span>
           <div className="min-w-0">
-            <p className="break-all font-mono text-sm text-ink/80 dark:text-white/80">
+            <p className="break-all font-mono text-sm font-semibold text-[#1F2421] dark:text-[#E6ECE7]">
               {endpoint.path}
             </p>
             {endpoint.description ? (
-              <p className="mt-0.5 text-xs text-ink/50 dark:text-white/50">
+              <p className="mt-1 text-xs text-[#6B726C] dark:text-[#A3B5A7]">
                 {endpoint.description}
               </p>
             ) : null}
@@ -187,14 +187,14 @@ function EndpointList({
 function FolderStructure({ structure }: { structure?: string | string[] }) {
   if (!structure) {
     return (
-      <p className="text-sm text-ink/45 dark:text-white/45">
+      <p className="font-mono text-xs text-[#6B726C]">
         No folder structure provided.
       </p>
     );
   }
   const lines = Array.isArray(structure) ? structure.join("\n") : structure;
   return (
-    <pre className="overflow-x-auto rounded-xl bg-ink/[0.03] p-4 font-mono text-xs leading-relaxed text-ink/75 dark:bg-white/[0.04] dark:text-white/75">
+    <pre className="overflow-x-auto rounded-xl border border-[#2B3D2F] bg-[#141C16] p-5 font-mono text-xs leading-relaxed text-[#A3B5A7] dark:border-[#2B3D2F]">
       {lines}
     </pre>
   );
@@ -215,13 +215,13 @@ const SECTIONS = [
   },
   {
     key: "user_roles",
-    title: "User Roles",
+    title: "User Roles & Permissions",
     icon: Users,
     accent: "violet",
   },
   {
     key: "core_features",
-    title: "Core Features",
+    title: "Core System Features",
     icon: Sparkles,
     accent: "brand",
   },
@@ -233,19 +233,19 @@ const SECTIONS = [
   },
   {
     key: "security_recommendations",
-    title: "Security Recommendations",
+    title: "Security & Compliance",
     icon: ShieldCheck,
     accent: "emerald",
   },
   {
     key: "deployment_strategy",
-    title: "Deployment Strategy",
+    title: "Deployment & Infrastructure Strategy",
     icon: Cloud,
     accent: "violet",
   },
   {
     key: "development_timeline",
-    title: "Development Timeline",
+    title: "Development Timeline & Milestones",
     icon: Timer,
     accent: "amber",
   },
@@ -299,21 +299,21 @@ export function BlueprintViewPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           to={ROUTES.BLUEPRINTS}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-400"
+          className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
         >
           <ArrowLeft className="size-4" />
-          Back to history
+          Back to History
         </Link>
 
-        {/* Tab View Switcher */}
-        <div className="inline-flex rounded-xl border border-ink/10 bg-white/70 p-1 backdrop-blur-sm dark:border-white/10 dark:bg-ink-dark/70">
+        {/* Retro Tab Switcher */}
+        <div className="inline-flex rounded-xl border border-[#E6DFD5] bg-[#FAF7F2] p-1 dark:border-[#2B3D2F] dark:bg-[#1E2B21]">
           <button
             type="button"
             onClick={() => setActiveTab("blueprint")}
-            className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-serif text-xs font-bold tracking-wide transition-all ${
               activeTab === "blueprint"
-                ? "bg-brand-500 text-white shadow-sm"
-                : "text-ink/65 hover:text-ink dark:text-white/65 dark:hover:text-white"
+                ? "bg-[#C05621] text-white shadow-2xs"
+                : "text-[#6B726C] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:text-white"
             }`}
           >
             <Sparkles className="size-3.5" />
@@ -322,10 +322,10 @@ export function BlueprintViewPage() {
           <button
             type="button"
             onClick={() => setActiveTab("chat")}
-            className={`inline-flex items-center gap-2 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 font-serif text-xs font-bold tracking-wide transition-all ${
               activeTab === "chat"
-                ? "bg-brand-500 text-white shadow-sm"
-                : "text-ink/65 hover:text-ink dark:text-white/65 dark:hover:text-white"
+                ? "bg-[#C05621] text-white shadow-2xs"
+                : "text-[#6B726C] hover:text-[#1F2421] dark:text-[#A3B5A7] dark:hover:text-white"
             }`}
           >
             <Bot className="size-3.5" />
@@ -341,14 +341,14 @@ export function BlueprintViewPage() {
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-violet-500 text-white">
-              <Target className="size-7" />
+            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-[#344A39] bg-[#223829] text-white font-bold shadow-md">
+              <Target className="size-7 text-[#E8F0EA]" />
             </span>
             <div>
-              <h2 className="text-2xl font-bold tracking-tight">
+              <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
                 {blueprint.title}
               </h2>
-              <div className="mt-1.5 flex flex-wrap items-center gap-2">
+              <div className="mt-2.5 flex flex-wrap items-center gap-2">
                 <Badge variant="success">
                   <CalendarDays className="size-3" />
                   {formatDate(blueprint.created_at)}
@@ -361,7 +361,7 @@ export function BlueprintViewPage() {
                 ) : null}
                 <Badge variant="neutral">
                   <Route className="size-3" />
-                  {data.rest_api_endpoints?.length ?? 0} endpoints
+                  {data.rest_api_endpoints?.length ?? 0} Endpoints
                 </Badge>
               </div>
             </div>
@@ -381,8 +381,9 @@ export function BlueprintViewPage() {
       ) : (
         <>
           {data.project_summary ? (
-            <Card className="p-5">
-              <p className="text-ink/75 dark:text-white/75">{data.project_summary}</p>
+            <Card className="p-6 sm:p-7 border-l-4 border-l-[#C05621]">
+              <p className="font-mono text-xs uppercase tracking-wider text-[#C05621] dark:text-[#E07A48] font-bold mb-2">[ EXECUTIVE SUMMARY ]</p>
+              <p className="text-[#4A524C] dark:text-[#A3B5A7] leading-relaxed text-sm sm:text-base font-sans">{data.project_summary}</p>
             </Card>
           ) : null}
 
@@ -391,7 +392,7 @@ export function BlueprintViewPage() {
           <div className="grid gap-4 lg:grid-cols-2">
             <SectionCard
               icon={Database}
-              title="Database Tables"
+              title="Database Schema Tables"
               accent="violet"
             >
               <TableList tables={data.database_tables} />
@@ -412,7 +413,7 @@ export function BlueprintViewPage() {
             </SectionCard>
           ))}
 
-          <SectionCard icon={FolderTree} title="Folder Structure" accent="amber">
+          <SectionCard icon={FolderTree} title="Directory & Folder Structure" accent="amber">
             <FolderStructure structure={data.folder_structure} />
           </SectionCard>
         </>

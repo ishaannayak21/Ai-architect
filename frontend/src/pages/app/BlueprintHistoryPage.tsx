@@ -41,36 +41,38 @@ function BlueprintCard({
       <button
         type="button"
         onClick={() => onOpen(blueprint)}
-        className="glass-card group flex h-full w-full cursor-pointer flex-col rounded-2xl p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-500/10"
+        className="retro-card group flex h-full w-full cursor-pointer flex-col rounded-2xl p-6 text-left transition-all duration-200 hover:-translate-y-1 hover:border-[#C05621]/40"
       >
-        <div className="flex items-start gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-violet-500 text-white">
+        <div className="flex items-start gap-3.5">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#C5D8C9] bg-[#E8F0EA] font-bold text-[#223829] dark:border-[#38503E] dark:bg-[#243226] dark:text-[#A3B5A7]">
             <Layers className="size-4.5" />
           </span>
           <div className="min-w-0 flex-1">
-            <h3 className="truncate font-semibold">{blueprint.title}</h3>
-            <p className="flex items-center gap-1.5 text-xs text-ink/45 dark:text-white/45">
+            <h3 className="truncate font-serif text-lg font-bold text-[#1F2421] transition-colors group-hover:text-[#C05621] dark:text-[#E6ECE7] dark:group-hover:text-[#E07A48]">
+              {blueprint.title}
+            </h3>
+            <p className="flex items-center gap-1.5 font-mono text-[11px] text-[#6B726C] dark:text-[#A3B5A7]">
               <CalendarDays className="size-3.5" />
               Generated {formatDate(blueprint.created_at)}
             </p>
           </div>
         </div>
 
-        <p className="mt-3 line-clamp-2 flex-1 text-sm text-ink/55 dark:text-white/50">
+        <p className="mt-3.5 line-clamp-2 flex-1 font-sans text-sm text-[#4A524C] dark:text-[#A3B5A7] leading-relaxed">
           {data.project_summary || blueprint.description || "No summary available."}
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-ink/10 pt-3 dark:border-white/10">
-          <Badge variant="brand">{stackCount} tech</Badge>
-          <Badge variant="neutral">{tableCount} tables</Badge>
+        <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#E6DFD5] pt-3.5 dark:border-[#2B3D2F]">
+          <Badge variant="brand">{stackCount} Tech</Badge>
+          <Badge variant="neutral">{tableCount} Tables</Badge>
           {teamSize ? (
             <Badge variant="neutral">
               <Users className="size-3" />
               {teamSize}
             </Badge>
           ) : null}
-          <span className="ml-auto flex items-center gap-1 text-xs font-medium text-brand-500 opacity-0 transition-opacity group-hover:opacity-100">
-            Open blueprint <ArrowRight className="size-3.5" />
+          <span className="ml-auto flex items-center gap-1 font-mono text-xs font-semibold text-[#C05621] opacity-0 transition-opacity group-hover:opacity-100 dark:text-[#E07A48]">
+            Open <ArrowRight className="size-3.5" />
           </span>
         </div>
       </button>
@@ -89,8 +91,8 @@ export function BlueprintHistoryPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">Project History</h2>
-          <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">Project History</h2>
+          <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
             {blueprints.length} generated blueprint
             {blueprints.length === 1 ? "" : "s"} saved in your workspace
           </p>
@@ -98,7 +100,7 @@ export function BlueprintHistoryPage() {
         <Link to={ROUTES.NEW_PROJECT}>
           <Button>
             <Plus className="size-4.5" />
-            New project
+            New Project
           </Button>
         </Link>
       </div>

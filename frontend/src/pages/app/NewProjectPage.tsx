@@ -127,10 +127,10 @@ export function NewProjectPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight">New Project</h2>
-        <p className="mt-1 text-sm text-ink/55 dark:text-white/50">
-          Describe your application idea and the architect engine will design a
-          complete engineering blueprint.
+        <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">New Architect Project</h2>
+        <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
+          Describe your application concept and the architect engine will design a
+          complete, production-grade engineering blueprint.
         </p>
       </div>
 
@@ -142,29 +142,29 @@ export function NewProjectPage() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
           >
-            <Card className="overflow-hidden p-8">
+            <Card className="overflow-hidden p-8 border border-[#223829]/30">
               <div className="flex items-center gap-4">
-                <span className="relative flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-violet-500 text-white">
-                  <BrainCircuit className="size-7" />
+                <span className="relative flex size-14 shrink-0 items-center justify-center rounded-2xl bg-[#223829] text-white font-bold shadow-md">
+                  <BrainCircuit className="size-7 text-[#E8F0EA]" />
                   <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center">
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand-500 opacity-60" />
-                    <span className="relative inline-flex size-2 rounded-full bg-white" />
+                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#C05621] opacity-60" />
+                    <span className="relative inline-flex size-2.5 rounded-full bg-[#C05621]" />
                   </span>
                 </span>
                 <div className="min-w-0">
-                  <h3 className="font-semibold">The architect is working…</h3>
-                  <p className="text-sm text-ink/55 dark:text-white/50">
-                    Designing a production-ready blueprint from your idea.
+                  <h3 className="font-serif text-xl font-bold text-[#1F2421] dark:text-[#E6ECE7]">Architect Engine is Working…</h3>
+                  <p className="font-mono text-xs text-[#C05621] dark:text-[#E07A48] uppercase tracking-wider font-semibold">
+                    [ COMPILING ARCHITECTURE BLUEPRINT ]
                   </p>
                 </div>
               </div>
 
-              <div className="mt-8 space-y-4">
+              <div className="mt-8 space-y-3.5">
                 {GENERATION_STEPS.map((step, index) => (
                   <div key={step} className="flex items-center gap-3">
                     <span className="flex size-6 shrink-0 items-center justify-center">
                       {index < stepIndex ? (
-                        <span className="flex size-5 items-center justify-center rounded-full bg-emerald-500 text-white">
+                        <span className="flex size-5 items-center justify-center rounded-full bg-[#223829] text-white font-bold">
                           <Check className="size-3" />
                         </span>
                       ) : index === stepIndex ? (
@@ -175,19 +175,19 @@ export function NewProjectPage() {
                             duration: 0.9,
                             ease: "linear",
                           }}
-                          className="size-5 rounded-full border-2 border-brand-500/20 border-t-brand-500"
+                          className="size-5 rounded-full border-2 border-[#C05621]/20 border-t-[#C05621]"
                         />
                       ) : (
-                        <span className="size-5 rounded-full border-2 border-ink/10 dark:border-white/10" />
+                        <span className="size-5 rounded-full border-2 border-[#E6DFD5] dark:border-[#2B3D2F]" />
                       )}
                     </span>
                     <span
-                      className={`text-sm transition-colors ${
+                      className={`font-mono text-xs transition-colors ${
                         index === stepIndex
-                          ? "font-medium text-ink dark:text-white"
+                          ? "font-semibold text-[#1F2421] dark:text-white"
                           : index < stepIndex
-                            ? "text-ink/55 dark:text-white/55"
-                            : "text-ink/35 dark:text-white/35"
+                            ? "text-[#4A524C] dark:text-[#A3B5A7]"
+                            : "text-[#9A9287] dark:text-[#6B726C]"
                       }`}
                     >
                       {step}
@@ -203,14 +203,14 @@ export function NewProjectPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <Card className="p-6">
+            <Card className="p-7 sm:p-9">
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="space-y-4"
+                className="space-y-6"
                 noValidate
               >
                 <Input
-                  label="What are you building?"
+                  label="What application are you building?"
                   leftIcon={<Lightbulb className="size-4" />}
                   placeholder="Build an E-commerce Platform"
                   error={errors.title?.message}
@@ -218,27 +218,27 @@ export function NewProjectPage() {
                   {...register("title")}
                 />
                 <Textarea
-                  label="Describe it in your own words (optional)"
-                  placeholder="Tell the architect about the audience, key workflows, integrations, and what success looks like…"
+                  label="Describe your vision & key requirements (optional)"
+                  placeholder="Tell the architect about your target audience, core features, integrations, performance needs, or database constraints…"
                   rows={5}
                   error={errors.description?.message}
-                  hint="More context helps the engine design a sharper blueprint."
+                  hint="More context allows the AI engine to generate sharper, deeper specifications."
                   {...register("description")}
                 />
 
                 <div>
-                  <p className="text-xs font-medium text-ink/45 dark:text-white/45">
-                    Try an example
+                  <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#6B726C] dark:text-[#A3B5A7]">
+                    QUICK EXAMPLES
                   </p>
-                  <div className="mt-2 flex flex-wrap gap-2">
+                  <div className="mt-3 flex flex-wrap gap-2">
                     {EXAMPLES.map(({ label, icon: Icon }) => (
                       <button
                         key={label}
                         type="button"
                         onClick={() => applyExample(label)}
-                        className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-ink/15 px-3 py-1.5 text-xs text-ink/70 transition-colors hover:border-brand-500 hover:text-brand-500 dark:border-white/15 dark:text-white/70 dark:hover:border-brand-400 dark:hover:text-brand-300"
+                        className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#E6DFD5] bg-[#FFFFFF] px-3.5 py-1.5 text-xs text-[#1F2421] transition-all hover:border-[#C05621] hover:bg-[#FDF3EE] hover:text-[#C05621] dark:border-[#2B3D2F] dark:bg-[#1A241C] dark:text-[#E6ECE7] dark:hover:border-[#E07A48] dark:hover:bg-[#331C13] dark:hover:text-[#E07A48] font-medium"
                       >
-                        <Icon className="size-3.5" />
+                        <Icon className="size-3.5 text-[#C05621] dark:text-[#E07A48]" />
                         {label}
                       </button>
                     ))}
@@ -246,20 +246,19 @@ export function NewProjectPage() {
                 </div>
 
                 {error ? (
-                  <div className="flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">
+                  <div className="flex items-center gap-2.5 rounded-xl border border-[#C05621]/30 bg-[#FDF3EE] p-4 text-sm text-[#C05621] dark:bg-[#331C13] dark:text-[#E07A48]">
                     <RotateCcw className="size-4 shrink-0" />
                     {error}
                   </div>
                 ) : null}
 
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-                  <p className="text-xs text-ink/45 dark:text-white/45">
-                    Powered by Google Gemini. Responses are saved to your
-                    history.
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-3">
+                  <p className="font-mono text-xs text-[#6B726C] dark:text-[#A3B5A7]">
+                    Engineered with Google Gemini · Blueprints automatically saved
                   </p>
                   <Button type="submit" size="lg">
                     <Sparkles className="size-4" />
-                    Generate blueprint
+                    Generate Blueprint
                     <ArrowRight className="size-4" />
                   </Button>
                 </div>

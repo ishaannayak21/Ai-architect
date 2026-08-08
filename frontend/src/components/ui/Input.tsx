@@ -33,14 +33,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {label ? (
         <label
           htmlFor={inputId}
-          className="text-sm font-medium text-ink/80 dark:text-white/80"
+          className="text-xs font-semibold uppercase tracking-wider text-stone-700 dark:text-stone-300"
         >
           {label}
         </label>
       ) : null}
       <div className="relative">
         {leftIcon ? (
-          <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-ink/40 dark:text-white/40">
+          <span className="pointer-events-none absolute inset-y-0 left-3.5 flex items-center text-stone-400 dark:text-stone-500">
             {leftIcon}
           </span>
         ) : null}
@@ -48,26 +48,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           ref={ref}
           id={inputId}
           className={cn(
-            "h-10 w-full rounded-xl border border-ink/15 bg-white px-3.5 text-sm text-ink outline-none transition-colors duration-200 placeholder:text-ink/35 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:placeholder:text-white/30",
-            leftIcon && "pl-10",
-            rightSlot && "pr-10",
+            "h-11 w-full rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] px-3.5 text-sm text-[#1F2421] shadow-2xs outline-none transition-all duration-200 placeholder:text-[#9A9287] focus:border-[#223829] focus:ring-2 focus:ring-[#223829]/15 dark:border-[#2B3D2F] dark:bg-[#1A241C] dark:text-[#E6ECE7] dark:placeholder:text-[#6B726C] dark:focus:border-[#A3B5A7] dark:focus:ring-[#A3B5A7]/20 font-sans",
+            leftIcon && "pl-10.5",
+            rightSlot && "pr-10.5",
             error &&
-              "border-red-500 focus:border-red-500 focus:ring-red-500/30",
+              "border-[#C05621] focus:border-[#C05621] focus:ring-[#C05621]/20 dark:border-[#E07A48]",
             className,
           )}
           aria-invalid={error ? true : undefined}
           {...props}
         />
         {rightSlot ? (
-          <span className="absolute inset-y-0 right-2 flex items-center">
+          <span className="absolute inset-y-0 right-2.5 flex items-center">
             {rightSlot}
           </span>
         ) : null}
       </div>
       {error ? (
-        <p className="text-xs text-red-500">{error}</p>
+        <p className="text-xs font-medium text-rose-600 dark:text-rose-400">{error}</p>
       ) : hint ? (
-        <p className="text-xs text-ink/50 dark:text-white/50">{hint}</p>
+        <p className="text-xs text-stone-500 dark:text-stone-400">{hint}</p>
       ) : null}
     </div>
   );

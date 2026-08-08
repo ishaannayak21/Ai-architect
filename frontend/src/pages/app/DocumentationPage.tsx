@@ -76,10 +76,10 @@ export function DocumentationPage() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           to={`/blueprints/${blueprint.id}`}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-500 hover:text-brand-400"
+          className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300"
         >
           <ArrowLeft className="size-4" />
-          Back to blueprint
+          Back to Blueprint
         </Link>
       </div>
 
@@ -90,14 +90,14 @@ export function DocumentationPage() {
       >
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-400 to-violet-500 text-white">
+            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-500 font-bold text-stone-950 shadow-md">
               <BookOpen className="size-7" />
             </span>
             <div>
-              <h2 className="text-2xl font-bold tracking-tight">
-                {blueprint.title} - Documentation Center
+              <h2 className="font-display text-2xl font-bold tracking-tight text-stone-900 dark:text-stone-100 sm:text-3xl">
+                {blueprint.title} Documentation Center
               </h2>
-              <div className="mt-1.5 flex flex-wrap items-center gap-2">
+              <div className="mt-2 flex flex-wrap items-center gap-2">
                 <Badge variant="success">
                   <CalendarDays className="size-3" />
                   Created {formatDate(doc.created_at)}
@@ -107,7 +107,7 @@ export function DocumentationPage() {
                     Updated {formatDate(doc.updated_at)}
                   </Badge>
                 ) : null}
-                <Badge variant="brand">14 Standard Sections</Badge>
+                <Badge variant="brand">14 Technical Sections</Badge>
               </div>
             </div>
           </div>

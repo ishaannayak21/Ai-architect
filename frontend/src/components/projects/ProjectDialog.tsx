@@ -68,16 +68,16 @@ export function ProjectDialog({
     <Modal
       open={open}
       onClose={onClose}
-      title={isEditing ? "Edit project" : "New project"}
+      title={isEditing ? "Edit Project" : "New Project"}
       description={
         isEditing
-          ? "Update the details of your project."
-          : "Give your project a name — the AI engine will flesh out the rest."
+          ? "Update the details of your software project."
+          : "Name your software concept — the AI engine will handle the specification."
       }
     >
       <form onSubmit={submit} className="space-y-4" noValidate>
         <Input
-          label="Title"
+          label="Project Title"
           placeholder="E-commerce Platform"
           error={errors.title?.message}
           {...register("title")}
@@ -87,15 +87,15 @@ export function ProjectDialog({
           placeholder="Describe your idea in a few sentences…"
           rows={4}
           error={errors.description?.message}
-          hint="Optional — add context to help the architect."
+          hint="Optional — provide context to guide the AI architect."
           {...register("description")}
         />
-        <div className="flex justify-end gap-2 pt-1">
+        <div className="flex justify-end gap-2 pt-2">
           <Button type="button" variant="ghost" onClick={onClose}>
             Cancel
           </Button>
           <Button type="submit" loading={submitting}>
-            {isEditing ? "Save changes" : "Create project"}
+            {isEditing ? "Save Changes" : "Create Project"}
           </Button>
         </div>
       </form>

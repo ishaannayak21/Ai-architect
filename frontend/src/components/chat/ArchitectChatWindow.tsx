@@ -96,17 +96,17 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
   };
 
   return (
-    <Card className="flex h-[620px] flex-col overflow-hidden p-0 border border-slate-200 bg-white shadow-md dark:border-slate-800 dark:bg-slate-900">
+    <Card className="flex h-[640px] flex-col overflow-hidden p-0 border border-[#E6DFD5] bg-[#FFFFFF] shadow-md dark:border-[#2B3D2F] dark:bg-[#1E2B21]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/90 px-5 py-3.5 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/90">
-        <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400 to-violet-500 text-white shadow-sm">
-            <Bot className="size-5" />
+      <div className="flex items-center justify-between border-b border-[#E6DFD5] bg-[#FAF7F2] px-6 py-4 backdrop-blur-md dark:border-[#2B3D2F] dark:bg-[#141C16]">
+        <div className="flex items-center gap-3.5">
+          <span className="flex size-10 items-center justify-center rounded-xl bg-[#223829] font-bold text-white shadow-2xs border border-[#344A39]">
+            <Bot className="size-5 text-[#E8F0EA]" />
           </span>
           <div>
-            <h3 className="font-bold text-sm tracking-tight text-slate-900 dark:text-slate-100">AI Architect Assistant</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Interactive architectural consultation & targeted section updates
+            <h3 className="font-serif font-bold text-base tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">AI Architect Assistant</h3>
+            <p className="font-mono text-[11px] text-[#6B726C] dark:text-[#A3B5A7]">
+              Interactive architectural consultation &amp; targeted section updates
             </p>
           </div>
         </div>
@@ -116,18 +116,18 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
           size="sm"
           loading={isClearing}
           onClick={handleClearHistory}
-          className="text-xs text-red-500 hover:bg-red-500/10 dark:text-red-400"
+          className="font-mono text-xs text-[#C05621] hover:bg-[#FDF3EE] hover:text-[#A8481A] dark:text-[#E07A48] dark:hover:bg-[#331C13]"
         >
           <Trash2 className="size-3.5" />
-          Clear chat
+          Clear Chat
         </Button>
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto bg-slate-50/50 p-5 space-y-4 dark:bg-slate-950/50">
+      <div className="flex-1 overflow-y-auto bg-[#F8F5EE]/70 p-6 space-y-4 dark:bg-[#141C16]/70">
         {isLoading ? (
           <div className="flex h-full items-center justify-center">
-            <Spinner className="size-6 text-brand-500" />
+            <Spinner className="size-6 text-[#C05621]" />
           </div>
         ) : (
           <AnimatePresence initial={false}>
@@ -144,8 +144,8 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
         )}
 
         {isSending && (
-          <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 animate-pulse">
-            <Bot className="size-4 text-brand-500" />
+          <div className="flex items-center gap-3 font-mono text-xs text-[#6B726C] dark:text-[#A3B5A7] animate-pulse">
+            <Bot className="size-4 text-[#C05621]" />
             <span>The AI Architect is thinking…</span>
           </div>
         )}
@@ -154,10 +154,10 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
       </div>
 
       {/* Quick Prompts Carousel Bar */}
-      <div className="border-t border-slate-200 bg-slate-100/80 px-4 py-2.5 dark:border-slate-800 dark:bg-slate-900/80">
-        <div className="mb-1.5 flex items-center justify-between text-[11px] font-medium text-slate-500 dark:text-slate-400">
-          <span>Quick architectural requests</span>
-          <span>Single-section update</span>
+      <div className="border-t border-[#E6DFD5] bg-[#FAF7F2] px-5 py-3 dark:border-[#2B3D2F] dark:bg-[#1A241C]">
+        <div className="mb-2 flex items-center justify-between font-mono text-[11px] font-semibold uppercase tracking-wider text-[#6B726C] dark:text-[#A3B5A7]">
+          <span>ARCHITECTURAL PROMPTS</span>
+          <span>SELECT REQUEST</span>
         </div>
         <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
           {QUICK_PROMPTS.map(({ label, prompt, icon: Icon }) => (
@@ -166,9 +166,9 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
               type="button"
               disabled={isSending}
               onClick={() => handleSend(prompt)}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs text-slate-700 transition-all hover:border-brand-500 hover:bg-brand-50 hover:text-brand-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-brand-400 dark:hover:bg-brand-950/40 dark:hover:text-brand-300"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#E6DFD5] bg-[#FFFFFF] px-3.5 py-1.5 font-sans text-xs font-medium text-[#1F2421] transition-all hover:border-[#C05621] hover:bg-[#FDF3EE] hover:text-[#C05621] dark:border-[#2B3D2F] dark:bg-[#1E2B21] dark:text-[#E6ECE7] dark:hover:border-[#E07A48] dark:hover:bg-[#331C13] dark:hover:text-[#E07A48]"
             >
-              <Icon className="size-3 text-brand-500 dark:text-brand-400 shrink-0" />
+              <Icon className="size-3.5 text-[#C05621] dark:text-[#E07A48] shrink-0" />
               <span>{label}</span>
             </button>
           ))}
@@ -176,13 +176,13 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
       </div>
 
       {/* Input Footer */}
-      <div className="border-t border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-900">
+      <div className="border-t border-[#E6DFD5] bg-[#FFFFFF] p-4 dark:border-[#2B3D2F] dark:bg-[#1E2B21]">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             handleSend();
           }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-3"
         >
           <Input
             placeholder="Ask the AI Architect to add features, convert to microservices, add caching…"
@@ -190,7 +190,7 @@ export function ArchitectChatWindow({ blueprintId }: { blueprintId: number }) {
             onChange={(e) => setInputContent(e.target.value)}
             disabled={isSending}
             autoComplete="off"
-            className="flex-1 border-slate-300 bg-slate-50 text-slate-900 caret-brand-500 placeholder:text-slate-400 focus:bg-white dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:bg-slate-800"
+            className="flex-1 font-sans text-sm text-[#1F2421] placeholder:text-[#9A9287] dark:text-[#E6ECE7] dark:placeholder:text-[#6B726C]"
           />
           <Button type="submit" disabled={!inputContent.trim() || isSending} loading={isSending}>
             <Send className="size-4" />
