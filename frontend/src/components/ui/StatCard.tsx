@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Card } from "@/components/ui/Card";
-
 interface StatCardProps {
   icon: ReactNode;
   label: string;
@@ -15,26 +13,26 @@ export function StatCard({
   label,
   value,
   hint,
-  accentClassName = "bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]",
+  accentClassName = "border border-orange-500/30 bg-orange-500/10 text-orange-500",
 }: StatCardProps) {
   return (
-    <Card className="p-6">
-      <div className="flex items-start justify-between">
+    <div className="rounded-2xl border border-stone-200 bg-white p-6 transition-all hover:border-stone-300 dark:border border-stone-800/80 dark:bg-[#111111] dark:hover:border-stone-700">
+      <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#6B726C] dark:text-[#A3B5A7]">
+          <p className="font-mono text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-stone-400">
             {label}
           </p>
-          <p className="mt-2.5 font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">
+          <p className="mt-4 font-serif text-4xl font-normal tracking-tight text-stone-900 dark:text-white">
             {value}
           </p>
           {hint ? (
-            <p className="mt-1 font-sans text-xs text-[#6B726C] dark:text-[#A3B5A7]">{hint}</p>
+            <p className="mt-2 font-mono text-[11px] text-stone-500 dark:text-stone-400">{hint}</p>
           ) : null}
         </div>
-        <div className={`flex size-10 items-center justify-center rounded-xl ${accentClassName}`}>
+        <div className={`flex size-11 shrink-0 items-center justify-center rounded-xl ${accentClassName}`}>
           {icon}
         </div>
       </div>
-    </Card>
+    </div>
   );
 }

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import {
+  ArrowRight,
   CalendarDays,
   FileText,
   FolderKanban,
@@ -11,12 +12,12 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { DashboardMarquee } from "@/components/layout/DashboardMarquee";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { StatCard } from "@/components/ui/StatCard";
-import { Button } from "@/components/ui/Button";
 import { ROUTES } from "@/constants";
 import { useAuth } from "@/hooks/useAuth";
 import { useProjects } from "@/hooks/useProjects";
@@ -30,7 +31,7 @@ const QUICK_ACTIONS = [
   },
   {
     label: "All projects",
-    description: "Browse & manage ideas",
+    description: "Browse & manage",
     icon: FolderKanban,
     to: ROUTES.PROJECTS,
   },
@@ -42,7 +43,7 @@ const QUICK_ACTIONS = [
   },
   {
     label: "Settings",
-    description: "Preferences & theme",
+    description: "Preferences & more",
     icon: Settings,
     to: ROUTES.SETTINGS,
   },
@@ -70,114 +71,143 @@ export function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome */}
+      {/* Top Feature Marquee directly below Dashboard Header */}
+      <DashboardMarquee />
+
+      {/* Welcome Banner */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
+        className="relative overflow-hidden rounded-3xl border border-stone-200 bg-white p-8 dark:border-stone-800/80 dark:bg-[#111111]"
       >
-        <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7] sm:text-4xl">
-          Welcome back, {firstName}
-        </h2>
-        <p className="mt-2 font-sans text-sm text-[#6B726C] dark:text-[#A3B5A7]">
-          Your architectural ideas are ready to be transformed into blueprints.
-        </p>
+        <div className="relative z-10 max-w-2xl">
+          <h2 className="font-sans text-3xl font-extrabold uppercase tracking-tight text-stone-900 dark:text-white sm:text-5xl">
+            Welcome back,{" "}
+            <span className="font-serif italic font-normal text-orange-500 lowercase">
+              {firstName}
+            </span>
+          </h2>
+          <p className="mt-3 font-sans text-base text-stone-600 dark:text-stone-400">
+            Your architectural ideas are ready to be transformed into blueprints.
+          </p>
+        </div>
+
+        {/* Dot Matrix Decorative Pattern matching reference screenshot */}
+        <div className="pointer-events-none absolute -right-6 -top-6 hidden lg:block opacity-20 dark:opacity-25">
+          <div className="grid grid-cols-12 gap-3 p-8">
+            {Array.from({ length: 48 }).map((_, i) => (
+              <span key={i} className="size-1.5 rounded-full bg-orange-500" />
+            ))}
+          </div>
+        </div>
       </motion.div>
 
-      {/* Analytics */}
+      {/* Statistics Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
-            <Skeleton key={index} className="h-28 rounded-2xl" />
+            <Skeleton key={index} className="h-32 rounded-2xl" />
           ))
         ) : (
           <>
             <StatCard
-              icon={<FolderKanban className="size-4.5" />}
-              label="Total projects"
+              icon={<FolderKanban className="size-5" />}
+              label="TOTAL PROJECTS"
               value={String(projects.length)}
               hint="Ideas in workspace"
-              accentClassName="bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]"
+              accentClassName="border border-orange-500/30 bg-orange-500/10 text-orange-500"
             />
             <StatCard
-              icon={<RefreshCw className="size-4.5" />}
-              label="Updated this week"
+              icon={<RefreshCw className="size-5" />}
+              label="UPDATED THIS WEEK"
               value={String(recentlyUpdated.length)}
               hint="Active in last 7 days"
-              accentClassName="bg-[#E8F0EA] text-[#223829] border border-[#C5D8C9] dark:bg-[#243226] dark:text-[#A3B5A7]"
+              accentClassName="border border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
             />
             <StatCard
-              icon={<FileText className="size-4.5" />}
-              label="Description words"
+              icon={<FileText className="size-5" />}
+              label="DESCRIPTION WORDS"
               value={totalWords.toLocaleString()}
               hint="AI engine context"
-              accentClassName="bg-[#FAF7F2] text-[#1F2421] border border-[#E6DFD5] dark:bg-[#1E2B21] dark:text-[#E6ECE7]"
+              accentClassName="border border-stone-300 dark:border-stone-700 bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300"
             />
             <StatCard
-              icon={<CalendarDays className="size-4.5" />}
-              label="Started this month"
+              icon={<CalendarDays className="size-5" />}
+              label="STARTED THIS MONTH"
               value={String(createdThisMonth.length)}
               hint="New ideas this month"
-              accentClassName="bg-[#FDF3EE] text-[#C05621] border border-[#F3D9C8] dark:bg-[#331C13] dark:text-[#E07A48]"
+              accentClassName="border border-orange-500/30 bg-orange-500/10 text-orange-500"
             />
           </>
         )}
       </div>
 
-      {/* Quick actions */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {QUICK_ACTIONS.map(({ label, description, icon: Icon, to }) => (
-          <Link key={label} to={to}>
-            <Card
-              hover
-              className="group flex items-center gap-4 p-5"
-            >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[#E6DFD5] bg-[#FFFFFF] text-[#1F2421] transition-all group-hover:border-[#C05621] group-hover:bg-[#C05621] group-hover:text-white dark:border-[#2B3D2F] dark:bg-[#1A241C] dark:text-[#E6ECE7]">
-                <Icon className="size-4.5" />
-              </span>
-              <div className="min-w-0">
-                <p className="font-serif font-bold text-[#1F2421] dark:text-[#E6ECE7] text-base">{label}</p>
-                <p className="truncate font-sans text-xs text-[#6B726C] dark:text-[#A3B5A7]">
-                  {description}
-                </p>
+      {/* Quick Actions */}
+      <div className="space-y-3">
+        <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-stone-400">
+          QUICK ACTIONS
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {QUICK_ACTIONS.map(({ label, description, icon: Icon, to }) => (
+            <Link key={label} to={to}>
+              <div className="group flex items-center justify-between rounded-2xl border border-stone-200 bg-white p-5 transition-all duration-200 hover:border-stone-300 dark:border-stone-800/80 dark:bg-[#111111] dark:hover:border-stone-700">
+                <div className="flex items-center gap-4 min-w-0">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-stone-200 bg-stone-50 text-stone-900 transition-colors group-hover:border-orange-500 group-hover:bg-orange-600 group-hover:text-white dark:border-stone-800 dark:bg-[#1a1a1a] dark:text-stone-200">
+                    <Icon className="size-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="font-sans font-bold text-stone-900 dark:text-white text-base">
+                      {label}
+                    </p>
+                    <p className="truncate font-mono text-xs text-stone-500 dark:text-stone-400">
+                      {description}
+                    </p>
+                  </div>
+                </div>
+                <ArrowRight className="size-4 shrink-0 text-stone-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-orange-500" />
               </div>
-            </Card>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* Recent projects */}
-      <div className="space-y-4">
+      {/* Recent Projects */}
+      <div className="space-y-5">
         <div className="flex items-center justify-between">
-          <h3 className="font-serif text-2xl font-bold tracking-tight text-[#1F2421] dark:text-[#E6ECE7]">Recent projects</h3>
+          <h3 className="font-serif text-3xl font-normal tracking-tight text-stone-900 dark:text-white">
+            Recent projects
+          </h3>
           <Link
             to={ROUTES.PROJECTS}
-            className="font-mono text-xs font-semibold uppercase tracking-wider text-[#C05621] hover:text-[#A8481A] dark:text-[#E07A48]"
+            className="flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-orange-500 hover:text-orange-400 transition-colors"
           >
-            View all projects →
+            <span>VIEW ALL PROJECTS</span>
+            <ArrowRight className="size-4" />
           </Link>
         </div>
 
         {isLoading ? (
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Skeleton className="h-44 rounded-2xl" />
-            <Skeleton className="h-44 rounded-2xl" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Skeleton className="h-52 rounded-2xl" />
+            <Skeleton className="h-52 rounded-2xl" />
+            <Skeleton className="h-52 rounded-2xl" />
           </div>
         ) : projects.length === 0 ? (
           <EmptyState
-            icon={<Sparkles className="size-6" />}
+            icon={<Sparkles className="size-6 text-orange-500" />}
             title="No projects yet"
             description="Describe your first software idea and we'll turn it into a complete engineering blueprint."
             action={
-              <Button onClick={openProject}>
+              <Button onClick={openProject} className="bg-orange-600 hover:bg-orange-500 text-white rounded-full px-6">
                 <Plus className="size-4" />
                 Create your first project
               </Button>
             }
           />
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2">
-            {projects.slice(0, 4).map((project) => (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {projects.slice(0, 6).map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}

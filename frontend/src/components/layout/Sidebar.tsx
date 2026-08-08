@@ -3,14 +3,17 @@ import {
   Folder,
   LayoutGrid,
   ListOrdered,
+  LogOut,
   Plus,
   Settings,
   User,
 } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 import { Logo } from "@/components/ui/Logo";
 import { ROUTES } from "@/constants";
+import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/utils/cn";
 
 const navItems = [
@@ -25,7 +28,30 @@ interface SidebarProps {
   onNavigate?: () => void;
 }
 
+function SidebarUserAvatar({ name }: { name: string }) {
+  const initials = name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  return (
+    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-orange-600 font-sans text-xs font-bold text-white shadow-2xs border border-orange-500">
+      {initials}
+    </span>
+  );
+}
+
 export function Sidebar({ onNavigate }: SidebarProps) {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Signed out successfully");
+    navigate(ROUTES.LOGIN);
+  };
+
   return (
     <aside className="flex h-full w-68 flex-col border-r border-stone-200 bg-white p-5 backdrop-blur-md dark:border-stone-800 dark:bg-[#090909]">
       <div className="flex h-12 items-center px-1">
@@ -35,15 +61,15 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       <Link
         to={ROUTES.NEW_PROJECT}
         onClick={onNavigate}
-        className="mt-5 flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-2xs transition-all hover:bg-orange-500 active:bg-orange-700"
+        className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-2xs transition-all hover:bg-orange-500 active:bg-orange-700"
       >
         <Plus className="size-4.5" />
-        New Architect Design
+        NEW ARCHITECT DESIGN
       </Link>
 
       {/* Pro Architect Card */}
-      <div className="mt-4 flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800 dark:bg-[#121212]">
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
+      <div className="mt-4 flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-800/80 dark:bg-[#121212]">
+        <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500 border border-orange-500/20">
           <Crown className="size-4.5" />
         </span>
         <div className="min-w-0">
@@ -57,7 +83,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       </div>
 
       {/* Navigation Links */}
-      <nav className="mt-6 flex flex-1 flex-col gap-1.5">
+      <nav className="mt-5 flex flex-1 flex-col gap-1.5">
         {navItems.map(({ to, label, icon: Icon }) => (
           <NavLink
             key={to}
@@ -67,8 +93,8 @@ export function Sidebar({ onNavigate }: SidebarProps) {
               cn(
                 "relative flex items-center gap-3.5 rounded-xl px-3.5 py-2.5 font-sans text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "bg-stone-100 text-stone-900 font-semibold dark:bg-[#1c1c1c] dark:text-white"
-                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-[#171717] dark:hover:text-white",
+                  ? "bg-stone-100 text-stone-900 font-semibold dark:bg-[#181818] dark:text-white"
+                  : "text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-[#141414] dark:hover:text-white",
               )
             }
           >
@@ -85,8 +111,8 @@ export function Sidebar({ onNavigate }: SidebarProps) {
         ))}
       </nav>
 
-      {/* Bottom System Status Card */}
-      <div className="relative overflow-hidden rounded-2xl bg-stone-900 p-4 text-white shadow-md dark:bg-[#121212] border border-stone-800">
+      {/* System Status Panel */}
+      <div className="relative overflow-hidden rounded-2xl bg-stone-900 p-4 text-white shadow-md dark:bg-[#121212] border border-stone-800/80 mb-4">
         <div className="relative z-10">
           <p className="font-mono text-xs font-bold text-orange-500 tracking-wide mb-1">
             [ v2.0 SYSTEM ONLINE ]
@@ -111,6 +137,32 @@ export function Sidebar({ onNavigate }: SidebarProps) {
           <line x1="0" y1="90" x2="100" y2="90" />
         </svg>
       </div>
+
+      {/* User Profile Section at bottom of Sidebar */}
+      {user ? (
+        <div className="flex items-center justify-between gap-2.5 rounded-xl border border-stone-200 bg-stone-50 p-2.5 dark:border-stone-800 dark:bg-[#121212]">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <SidebarUserAvatar name={user.name} />
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-sans text-xs font-bold text-stone-900 dark:text-white">
+                {user.name}
+              </p>
+              <p className="truncate font-mono text-[10px] text-stone-500 dark:text-stone-400">
+                {user.email}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="inline-flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-700 transition-colors hover:bg-orange-600 hover:text-white dark:border-stone-800 dark:bg-[#1a1a1a] dark:text-stone-300 dark:hover:bg-orange-600 dark:hover:text-white"
+            title="Sign out"
+            aria-label="Sign out"
+          >
+            <LogOut className="size-3.5" />
+          </button>
+        </div>
+      ) : null}
     </aside>
   );
 }
